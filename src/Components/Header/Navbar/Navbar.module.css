@@ -1,0 +1,47 @@
+ul.nav{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    height: 52px;
+
+
+    /*border: 1px solid dimgrey;*/
+    /*box-sizing: border-box;*/
+}
+
+ul.nav li{
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 16px 32px 16px;
+
+    display: flex;
+    text-align: center;
+
+    /*box-sizing: border-box;*/
+
+
+}
+.activeLink {
+    border-bottom: 2px solid #5ECE7B;
+}
+
+
+ul.nav li a{
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: #1D1F22;
+    cursor: pointer;
+}
+
+.activeCategory{
+    color: #5ECE7B;
+    font-weight: 600;
+}
+

@@ -1,0 +1,77 @@
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 204px;
+    height: 40px;
+}
+.items div {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.items label{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 160%;
+    display: flex;
+    color: #1D1F22;
+}
+.items .selectCurrency:after{
+    width: 6px;
+    height: 3px;
+    border: none;
+    content: '\02C5';
+}
+
+.items .currenciesList{
+    width: 114px;
+    height: 169px;
+    position: absolute;
+}
+
+.items .currenciesList ul li {
+    cursor: pointer;
+}
+
+
+.items img{
+    display: flex;
+    filter: invert(100);
+    width: 20px;
+    height: 20px;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+
+.items .numberOrders{
+    position: absolute;
+    top: 25px;
+    right: 88px;
+    z-index: 100;
+
+    width: 20px;
+    height: 20px;
+
+    background: #1D1F22;
+    border-radius: 60px;
+
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+
+
