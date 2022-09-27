@@ -16,7 +16,6 @@ export const GET_CATEGORIES = () => {
 }
 
 
-
 export const GET_CATEGORY_PRODUCTS = (category) => {
     return client
         .query({
@@ -51,19 +50,7 @@ export const GET_CATEGORY_PRODUCTS = (category) => {
         .then(result => result.data.category.products);
 }
 
-export const GET_CURRENCIES = () => {
-    return client
-        .query({
-            query: gql`
-      query GET_CURRENCIES {
-         currencies{
-            label, symbol
-    }
-      }
-    `,
-        })
-        .then(result => result.data.currencies);
-}
+
 
 
 //

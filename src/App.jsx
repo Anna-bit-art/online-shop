@@ -8,33 +8,29 @@ import React from "react";
 import {connect} from "react-redux";
 
 
-export const UserContext = React.createContext();
-
-
 class App extends React.Component {
-  render() {
-    return (
-
-        <div className={s.wrapper} >
-            <Header/>
-            <div className={`${s.wrapperContent} ${this.props.isCartOpen && s.overlay}`}>
-                <Routes>
-                    <Route path='/category/:categoryId' element={<CategoryPage />}/>
-                    <Route path='/pdp/:productId' element={<PDP/>}/>
-                    <Route path='/cart' element={<Cart/>}/>
-                </Routes>
+    render() {
+        return (
+            <div className={s.wrapper}>
+                <Header/>
+                <div className={`${s.wrapperContent} ${this.props.isCartOpen && s.overlay}`}>
+                    <Routes>
+                        <Route path='/category/:categoryId' element={<CategoryPage/>}/>
+                        <Route path='/pdp/:productId' element={<PDP/>}/>
+                        <Route path='/cart' element={<Cart/>}/>
+                    </Routes>
+                </div>
             </div>
-        </div>
 
-    );
-  }
-}
-
-
-let mapStateToProps = (state) => {
-    return{
-        isCartOpen: state.cart.isCartOpen,
+        );
     }
 }
-export default connect(mapStateToProps, null) (App)
+
+
+// let mapStateToProps = (state) => {
+//     return{
+//         isCartOpen: state.cart.isCartOpen,
+//     }
+// }
+export default connect(null, null)(App)
 

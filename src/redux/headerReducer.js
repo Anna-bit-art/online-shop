@@ -1,4 +1,4 @@
-import {GET_CURRENCIES} from "../query/categories";
+import {GET_CURRENCIES} from "../query/currencies";
 
 
 const SET_CURRENCIES = 'SET_CURRENCIES';
@@ -6,22 +6,23 @@ const SET_CURRENT_CURRENCY = 'SET_CURRENT_CURRENCY';
 
 let initialState = {
     currencies: [],
-    currentCurrency: []
+    currentCurrency: '$'
 }
 
 const headerReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CURRENCIES: {
-            return { ...state, currencies: [ ...action.currencies ] }
-        }
-        case SET_CURRENT_CURRENCY: {
-            return { ...state,
-                currentCurrency: state.currencies.filter(
-                    el => el.label === action.label
-                )
-            }
+            return {...state, currencies: [...action.currencies]}
         }
 
+        case SET_CURRENT_CURRENCY: {
+            return {
+                ...state,
+                currentCurrency: state.currencies[action.index].symbol === '$'
+                    ? '$'
+                    : state.currencies[action.index].symbol
+            }
+        }
 
         default: return state;
     }
@@ -29,17 +30,16 @@ const headerReducer = (state = initialState, action) => {
 }
 
 
-export const setCurrencies =(currencies) => ({type: SET_CURRENCIES, currencies});
-export const setCurrentCurrency = (label) => ({type: SET_CURRENT_CURRENCY, label});
+export const setCurrencies = (currencies) => ({type: SET_CURRENCIES, currencies});
+export const setCurrentCurrency = (index) => ({type: SET_CURRENT_CURRENCY, index});
 
-export const getCurrencies  = () => async (dispatch) => {
+export const getCurrencies = () => async (dispatch) => {
     let currencies = await GET_CURRENCIES();
     dispatch(setCurrencies(currencies));
-    dispatch(setCurrentCurrency(currencies[0].label))
 }
 
-export const getCurrentCurrency = (label) =>  (dispatch) => {
-    dispatch(setCurrentCurrency(label));
+export const getCurrentCurrency = (index) => (dispatch) => {
+    dispatch(setCurrentCurrency(index));
 }
 
 

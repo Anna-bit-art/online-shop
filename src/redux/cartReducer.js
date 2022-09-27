@@ -1,4 +1,3 @@
-
 let ADD_ORDER = 'ADD_ORDER';
 let INCREASE_QUANTITY = 'INCREASE_QUANTITY';
 let DECREASE_QUANTITY = 'DECREASE_QUANTITY';
@@ -30,12 +29,11 @@ const cartReducer = (state = initialState, action) => {
                     brand: action.payload.brand,
                     gallery: action.payload.gallery,
                     attributes: action.payload.attributes,
+                    prices: action.payload.prices,
                     options: action.options,
-                    currentPrices: action.currentPrices
                 }
                 state.orders.push(order)
-            }
-            else {
+            } else {
                 let check = false;
                 state.orders.map((item, key) => {
                     if (item.id === action.payload.id) {
@@ -51,8 +49,8 @@ const cartReducer = (state = initialState, action) => {
                         brand: action.payload.brand,
                         gallery: action.payload.gallery,
                         attributes: action.payload.attributes,
+                        prices: action.payload.prices,
                         options: action.options,
-                        currentPrices: action.currentPrices
                     }
                     state.orders.push(_order);
                 }
@@ -67,18 +65,17 @@ const cartReducer = (state = initialState, action) => {
         case INCREASE_QUANTITY: {
             state.numberOrders++
             state.orders[action.payload].quantity++
-                return {
-                    ...state
-                }
+            return {
+                ...state
+            }
         }
 
         case DECREASE_QUANTITY: {
             let quantity = state.orders[action.payload].quantity;
-            if(quantity > 1) {
+            if (quantity > 1) {
                 state.numberOrders--
                 state.orders[action.payload].quantity--
-            }
-            else {
+            } else {
                 return {
                     ...state,
                     numberOrders: state.numberOrders - quantity,
@@ -92,16 +89,16 @@ const cartReducer = (state = initialState, action) => {
             }
         }
 
-        default: return state;
+        default:
+            return state;
 
     }
 }
 
-export const checkCart = () => ({ type: IS_CART_OPEN})
-export const addProduct = (payload, options) => ({ type: ADD_ORDER, payload, options})
-export const increaseQuantity = (payload) => ({ type: INCREASE_QUANTITY, payload })
-export const decreaseQuantity = (payload) => ({ type: DECREASE_QUANTITY, payload })
-
+export const checkCart = () => ({type: IS_CART_OPEN})
+export const addProduct = (payload, options) => ({type: ADD_ORDER, payload, options})
+export const increaseQuantity = (payload) => ({type: INCREASE_QUANTITY, payload})
+export const decreaseQuantity = (payload) => ({type: DECREASE_QUANTITY, payload})
 
 
 export default cartReducer;

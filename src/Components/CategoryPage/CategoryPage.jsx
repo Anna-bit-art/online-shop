@@ -5,21 +5,13 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import {addProduct} from "../../redux/cartReducer";
 import {withRouter} from "../../withRouter";
-import {requestProducts, setCurrencyProducts} from "../../redux/categoryReducer";
 import cart from "../../img/cart.png";
 
 
 
 class CategoryPage extends React.Component {
 
-    componentDidMount() {
-        this.props.requestProducts('all')
-        let currency = this.props.currentCurrency
-        this.props.setCurrencyProducts(currency)
-    }
-
     render() {
-        console.log(this.props.products)
         return (
             <div className={s.categoryPage}>
 
@@ -36,10 +28,10 @@ class CategoryPage extends React.Component {
 
                                             <div>
                                                 <h5>{product.name}</h5>
-                                                {/*<p>*/}
-                                                {/*    {product.currentPrices[0].currency.symbol}*/}
-                                                {/*    {product.currentPrices[0].amount}*/}
-                                                {/*</p>*/}
+                                                <p>
+                                                    {this.props.currentCurrency + ' '}
+                                                    {product.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
+                                                </p>
                                             </div>
                                         </div>
 
@@ -50,10 +42,10 @@ class CategoryPage extends React.Component {
                                                 <img className={s.productPhoto} alt={'product'} src={product.gallery[0]}/>
                                                 <div>
                                                     <h5>{product.name} {product.brand}</h5>
-                                                    {/*<p>*/}
-                                                    {/*    {product.currentPrices[0].currency.symbol}*/}
-                                                    {/*    {product.currentPrices[0].amount}*/}
-                                                    {/*</p>*/}
+                                                    <p>
+                                                        {this.props.currentCurrency + ' '}
+                                                        {product.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
+                                                    </p>
                                                 </div>
                                             </NavLink>
                                             <div className={s.emptyCart}
@@ -81,7 +73,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect (mapStateToProps, {requestProducts,setCurrencyProducts, addProduct}),
+    connect (mapStateToProps, {addProduct}),
     withRouter)
 (CategoryPage);
 

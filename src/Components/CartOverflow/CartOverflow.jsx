@@ -16,53 +16,58 @@ export class CartOverflow extends React.Component {
         let cartData = this.props.props.props
         return (
             <div className={s.cartOverflow}>
-                <h1>My bag, <span>{cartData.numberOrders > 1 ? cartData.numberOrders + ' items' : cartData.numberOrders + ' item'}</span></h1>
+                <h1>My bag,
+                    <span>{cartData.numberOrders > 1 ? cartData.numberOrders + ' items' : cartData.numberOrders + ' item'}</span>
+                </h1>
 
                 <div className={s.orders}>
-                    { cartData.orders.map( (order, key) =>
-                            <div key={key} className={s.cartProduct}>
+                    {cartData.orders.map((order, key) =>
+                        <div key={key} className={s.cartProduct}>
 
-                                <div className={s.cartProductInfo}>
-                                    <h3>{order.name}</h3>
-                                    <h3>{order.brand}</h3>
+                            <div className={s.cartProductInfo}>
+                                <h3>{order.name}</h3>
+                                <h3>{order.brand}</h3>
 
-
-                                    <div className={s.priceBlock}>
-                                        {/*<p>*/}
-                                        {/*    {order.currentPrices[0].currency.symbol}*/}
-                                        {/*    {order.currentPrices[0].amount}*/}
-                                        {/*</p>*/}
-                                    </div>
-
-                                    { order.attributes.map(attributes =>
-                                        attributes.type === 'text'
-                                            ? <SizeBoxMin key={attributes.name} name={attributes.name} items={attributes.items}/>
-                                            : null
-                                    ) }
-
-                                    { order.attributes.map(attributes =>
-                                        attributes.type === 'swatch'
-                                            ? <ColorBoxMin key={attributes.name} name={attributes.name} items={attributes.items} />
-                                            : null
-                                    )}
-
+                                <div className={s.priceBlock}>
+                                    <p>
+                                        {this.props.currentCurrency + ' '}
+                                        {order.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
+                                    </p>
                                 </div>
 
-                                <div className={s.cartProductPhoto}>
+                                {order.attributes.map(attributes =>
+                                    attributes.type === 'text'
+                                        ? <SizeBoxMin key={attributes.name} name={attributes.name}
+                                                      items={attributes.items}/>
+                                        : null
+                                )}
 
-                                    <div className={s.selectAmount}>
-                                        <input type={'button'} value={'+'} onClick={() => this.props.increaseQuantity(key)}/>
-                                        <input type={'button'} className={s.label} value={order.quantity}/>
-                                        <input type={'button'} value={'-'} onClick={() => this.props.decreaseQuantity(key, order.id)}/>
-                                    </div>
-
-                                    <img alt={'orderImg'} src={order.gallery[0]}/>
-
-                                </div>
-
+                                {order.attributes.map(attributes =>
+                                    attributes.type === 'swatch'
+                                        ? <ColorBoxMin key={attributes.name} name={attributes.name}
+                                                       items={attributes.items}/>
+                                        : null
+                                )}
 
                             </div>
-                        )}
+
+                            <div className={s.cartProductPhoto}>
+
+                                <div className={s.selectAmount}>
+                                    <input type={'button'} value={'+'}
+                                           onClick={() => this.props.increaseQuantity(key)}/>
+                                    <input type={'button'} className={s.label} value={order.quantity}/>
+                                    <input type={'button'} value={'-'}
+                                           onClick={() => this.props.decreaseQuantity(key, order.id)}/>
+                                </div>
+
+                                <img alt={'orderImg'} src={order.gallery[0]}/>
+
+                            </div>
+
+
+                        </div>
+                    )}
 
                 </div>
 
@@ -72,7 +77,9 @@ export class CartOverflow extends React.Component {
                 </div>
 
                 <div className={s.buttons}>
-                    <NavLink to={'/cart'}><button>View bag</button></NavLink>
+                    <NavLink to={'/cart'}>
+                        <button>View bag</button>
+                    </NavLink>
                     <button onClick={this.props.checkCart}>Check out</button>
                 </div>
 
@@ -83,6 +90,6 @@ export class CartOverflow extends React.Component {
 
 
 export default compose(
-    connect (null, {increaseQuantity, decreaseQuantity}),
+    connect(null, {increaseQuantity, decreaseQuantity}),
     withRouter)
-    (CartOverflow);
+(CartOverflow);

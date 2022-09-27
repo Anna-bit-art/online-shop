@@ -1,11 +1,12 @@
 import {GET_PRODUCT} from "../query/product";
 
-
 const SET_PRODUCT = 'SET_PRODUCT';
-const SET_CURRENT_PRICES = 'SET_CURRENT_PRICES';
+const SET_PRICES = 'SET_PRICES';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+
 
 let initialState = {
-    currentCurrency: 'USD',
+    isFetching: false,
     product: {
         id: null,
         name: null,
@@ -16,7 +17,6 @@ let initialState = {
         gallery: [],
         attributes: [],
         prices: [],
-        currentPrices: []
     }
 }
 
@@ -35,21 +35,13 @@ const pdpReducer = (state = initialState, action) => {
                     brand: action.payload.brand,
                     gallery: action.payload.gallery,
                     attributes: action.payload.attributes,
-                    prices: action.payload.prices,
-                    currentPrices: [action.payload.prices[0]]
+                    prices: action.payload.prices
                 }
             }
         }
-        case SET_CURRENT_PRICES: {
-            console.log(action.label)
-            return {
-                ...state,
-                product: {
-                    ...state.product,
-                    currentPrices: state.product.prices.filter(
-                        el => el.currency.label === action.label)
-                }
-            }
+
+        case TOGGLE_IS_FETCHING: {
+            return {...state, isFetching: action.isFetching}
         }
 
         default: return state;
@@ -57,19 +49,17 @@ const pdpReducer = (state = initialState, action) => {
 
 }
 
-export const setProduct = (payload) => ({ type: SET_PRODUCT, payload});
-export const setCurrentPrices = (label) => ({type:SET_CURRENT_PRICES, label})
+export const setProduct = (payload) => ({type: SET_PRODUCT, payload});
+export const setPrices = (currentCurrency) => ({type: SET_PRICES, currentCurrency});
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 
-
-export const requestProductId  = (productID) => async (dispatch) => {
-    let payload = await GET_PRODUCT(productID)
+export const requestProductId = (productID) => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    let payload = await GET_PRODUCT(productID);
     dispatch(setProduct(payload));
+    dispatch(toggleIsFetching(false));
 }
-
-
-
-
 
 export default pdpReducer;
 
