@@ -12,9 +12,11 @@
     padding-bottom: 55px;
     border-bottom: 1px solid #E5E5E5;
 }
-.cartPage .priceBlock span{
+.cartPage .priceBlock p{
+    font-style: normal;
     font-weight: 700;
-    margin: 20px 0 20px 0;
+    font-size: 24px;
+    line-height: 24px;
 }
 .cartPage .cartProduct {
     display: flex;
@@ -65,14 +67,65 @@
     filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
 
-.cartPage .cartProduct .cartProductPhoto img {
+.cartPage .cartProduct .cartProductPhoto .photos{
+    position: relative;
     width: 200px;
     height: 288px;
+    overflow: auto;
+}
+.cartPage .cartProduct .cartProductPhoto img {
+    width: 100%;
+    height: 100%;
     display: flex;
     object-fit: cover;
     vertical-align: middle;
 }
+/****************photoSwitch**********************/
+.cartPage .photoSwitch{
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 8px;
+}
+.cartPage .photoSwitch div {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+}
 
+.cartPage .photoSwitch div:before {
+     content: '';
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     right: 0;
+     margin: auto 0;
+     width: 25px;
+     height: 25px;
+     background: url("../../img/CaretRight.png") no-repeat center;
+     background-size: revert;
+ }
+.cartPage .photoSwitch .left:before{
+    background: url("../../img/CaretLeft.png") no-repeat center ;
+}
+
+.cartPage .photoSwitch input[type='button' i]{
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.73);
+    cursor: pointer;
+    z-index: 1000;
+}
+.cartPage .photoSwitch input:hover{
+    border: none;
+}
+
+/****************selectAmount**********************/
 .cartPage .cartProduct .cartProductPhoto .selectAmount {
     width: 45px;
     height: 288px;
@@ -107,19 +160,37 @@ input[value='-']{
     border: none;
 
 }
+/************************total*********************************************/
+.cartPage .total{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 16px;
+    margin-top: 32px;
+
+    width: 279px;
+    height: auto;
+}
 
 .cartPage h5 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
     line-height: 28px;
     color: #1D1F22;
+    margin-bottom: 8px;
+}
+.cartPage .sum h5{
+    font-weight: 700;
 }
 
 .cartPage button {
     height: 43px;
     width: 279px;
     display: flex;
-    /*align-items: center;*/
-    /*justify-content: center;*/
     font-size: 14px;
+    margin-top: 8px;
 }
 
 

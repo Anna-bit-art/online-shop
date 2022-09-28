@@ -35,7 +35,7 @@ class Actions extends React.Component {
                     <div> </div>
                     <div> </div>
                     <div>
-                        <label onMouseOver={this.openListCurrency}>{this.props.currentCurrency} ></label>
+                        <label onClick={this.openListCurrency}>{this.props.currentCurrency} ></label>
                         {this.state.isCurrencyOpen &&
                         <div className={s.currenciesList}>
                             {this.props.currencies.map((currency, index) =>

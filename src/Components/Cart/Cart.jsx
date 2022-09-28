@@ -23,10 +23,10 @@ export class Cart extends React.Component {
 
 
                             <div className={s.priceBlock}>
-                                {/*<p>*/}
-                                {/*    {order.currentPrices[0].currency.symbol}*/}
-                                {/*    {order.currentPrices[0].amount}*/}
-                                {/*</p>*/}
+                                <p>
+                                    {this.props.currentCurrency + ' '}
+                                    {order.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
+                                </p>
                             </div>
 
                             { order.attributes.map(attributes =>
@@ -52,16 +52,47 @@ export class Cart extends React.Component {
                                 <input type={'button'} value={'-'} onClick={() => this.props.decreaseQuantity(key, order.id)}/>
                             </div>
 
-                            <img alt={'orderImg'} src={order.gallery[0]}/>
+                            <div className={s.photos}>
+
+
+
+                                {order.gallery.map ((img, key) =>
+                                    <>
+                                        <img alt={'orderImg'} src={img} key={key}/>
+
+                                        <div className={s.photoSwitch}>
+                                            <div className={s.left}>
+                                                <input type={'button'} />
+                                            </div>
+                                            <div >
+                                                <input type={'button'} />
+                                            </div>
+                                        </div>
+
+                                    </>
+
+
+                                )}
+
+                            </div>
 
                         </div>
 
                     </div>
                 )}
 
-                <h5>Tax 21%:{this.props.tax}</h5>
-                <h5>Quantity:{this.props.numberOrders}</h5>
-                <h5>Total:{this.props.total}</h5>
+                <div className={s.total}>
+                    <div>
+                        <h5>Tax 21%:</h5>
+                        <h5>Quantity:</h5>
+                        <h5 style={{fontWeight: 500}}>Total:</h5>
+                    </div>
+                    <div className={s.sum}>
+                        <h5>{this.props.currentCurrency + this.props.tax}</h5>
+                        <h5>{this.props.numberOrders}</h5>
+                        <h5>{this.props.currentCurrency + this.props.total}</h5>
+                    </div>
+                </div>
                 <button>order</button>
 
             </div>
@@ -72,10 +103,11 @@ export class Cart extends React.Component {
 
 let mapStateToProps = (state) => {
     return{
+        currentCurrency: state.header.currentCurrency,
         orders: state.cart.orders,
         numberOrders: state.cart.numberOrders,
         total: state.cart.total,
-        tax: state.cart.tax,
+        tax: state.cart.tax
     }
 }
 
