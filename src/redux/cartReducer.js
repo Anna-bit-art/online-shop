@@ -20,6 +20,7 @@ const cartReducer = (state = initialState, action) => {
                 isCartOpen: !state.isCartOpen
             }
         }
+
         case ADD_ORDER: {
             if (state.numberOrders === 0) {
                 let order = {
@@ -99,6 +100,7 @@ export const checkCart = () => ({type: IS_CART_OPEN})
 export const addProduct = (payload, options) => ({type: ADD_ORDER, payload, options})
 export const increaseQuantity = (payload) => ({type: INCREASE_QUANTITY, payload})
 export const decreaseQuantity = (payload) => ({type: DECREASE_QUANTITY, payload})
+
 
 
 export default cartReducer;

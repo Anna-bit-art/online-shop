@@ -1,10 +1,6 @@
 .cartPage {
-    /*padding: 5rem 6.3rem;*/
     display: flex;
     flex-direction: column;
-
-    /*box-sizing: border-box;*/
-    /*border: 1px solid dimgrey;*/
 }
 
 .cartPage h1{
@@ -25,8 +21,6 @@
     min-height: 21rem;
     border-bottom: 1px solid #E5E5E5;
     box-sizing: border-box;
-
-
 }
 
 /******************************cartProductInfo***************************/
@@ -79,50 +73,6 @@
     display: flex;
     object-fit: cover;
     vertical-align: middle;
-}
-/****************photoSwitch**********************/
-.cartPage .photoSwitch{
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0;
-    gap: 8px;
-}
-.cartPage .photoSwitch div {
-    width: 24px;
-    height: 24px;
-    position: relative;
-    cursor: pointer;
-}
-
-.cartPage .photoSwitch div:before {
-     content: '';
-     position: absolute;
-     top: 0;
-     bottom: 0;
-     right: 0;
-     margin: auto 0;
-     width: 25px;
-     height: 25px;
-     background: url("../../img/CaretRight.png") no-repeat center;
-     background-size: revert;
- }
-.cartPage .photoSwitch .left:before{
-    background: url("../../img/CaretLeft.png") no-repeat center ;
-}
-
-.cartPage .photoSwitch input[type='button' i]{
-    width: 24px;
-    height: 24px;
-    background: rgba(0, 0, 0, 0.73);
-    cursor: pointer;
-    z-index: 1000;
-}
-.cartPage .photoSwitch input:hover{
-    border: none;
 }
 
 /****************selectAmount**********************/
@@ -191,6 +141,10 @@ input[value='-']{
     display: flex;
     font-size: 14px;
     margin-top: 8px;
+}
+
+.cartPage a:hover{
+    text-decoration: underline 2px #1D1F22;
 }
 
 

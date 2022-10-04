@@ -1,0 +1,43 @@
+/****************photoSwitch**********************/
+ .photoSwitch{
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 8px;
+}
+ .photoSwitch div {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+}
+.photoSwitch div:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto 0;
+    width: 25px;
+    height: 25px;
+    background: url("../../../img/CaretRight.png") no-repeat center;
+    background-size: revert;
+}
+.photoSwitch .left:before{
+    background: url("../../../img/CaretLeft.png") no-repeat center ;
+}
+
+.photoSwitch input[type='button' i]{
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.73);
+    cursor: pointer;
+    z-index: 1000;
+}
+.cartPage .photoSwitch input:hover{
+    border: none;
+}

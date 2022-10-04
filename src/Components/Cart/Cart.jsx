@@ -5,9 +5,25 @@ import ColorBox from "../common/ColorBox/ColorBox";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {decreaseQuantity, increaseQuantity} from "../../redux/cartReducer";
+import SliderImage from "./SliderImage/SliderImage";
+import {withRouter} from "../../withRouter";
+import {NavLink} from "react-router-dom";
 
 
 export class Cart extends React.Component {
+
+    totalPrice = () => {
+
+        let tax = 0.21
+        let orders = this.props.orders;
+        let i = orders[0].prices.findIndex((el) => el.currency.symbol === this.props.currentCurrency)
+
+        let sum = orders.reduce((acc, item) => acc + item.quantity * item.prices[i].amount, 0).toFixed(2)
+        let taxAmount = (sum * tax).toFixed(2)
+
+        return { total: sum, tax: taxAmount }
+    }
+
 
     render() {
         return (
@@ -18,7 +34,10 @@ export class Cart extends React.Component {
                     <div key={key} className={s.cartProduct}>
 
                         <div className={s.cartProductInfo}>
-                            <h3>{order.name}</h3>
+                            <NavLink to={'/pdp/' + order.id}>
+                                <h3>{order.name}</h3>
+                            </NavLink>
+
                             <h3 className={s.brand}>{order.brand}</h3>
 
 
@@ -53,27 +72,7 @@ export class Cart extends React.Component {
                             </div>
 
                             <div className={s.photos}>
-
-
-
-                                {order.gallery.map ((img, key) =>
-                                    <>
-                                        <img alt={'orderImg'} src={img} key={key}/>
-
-                                        <div className={s.photoSwitch}>
-                                            <div className={s.left}>
-                                                <input type={'button'} />
-                                            </div>
-                                            <div >
-                                                <input type={'button'} />
-                                            </div>
-                                        </div>
-
-                                    </>
-
-
-                                )}
-
+                                <SliderImage key={key} images={order.gallery}/>
                             </div>
 
                         </div>
@@ -88,9 +87,9 @@ export class Cart extends React.Component {
                         <h5 style={{fontWeight: 500}}>Total:</h5>
                     </div>
                     <div className={s.sum}>
-                        <h5>{this.props.currentCurrency + this.props.tax}</h5>
-                        <h5>{this.props.numberOrders}</h5>
-                        <h5>{this.props.currentCurrency + this.props.total}</h5>
+                        <h5>{this.props.currentCurrency} {this.totalPrice().tax}</h5>
+                        <h5>{this.props.numberOrders} </h5>
+                        <h5>{this.props.currentCurrency} {this.totalPrice().total} </h5>
                     </div>
                 </div>
                 <button>order</button>
@@ -113,5 +112,6 @@ let mapStateToProps = (state) => {
 
 
 export default compose(
-    connect (mapStateToProps, {increaseQuantity, decreaseQuantity}))
+    connect (mapStateToProps, {increaseQuantity, decreaseQuantity}),
+    withRouter)
 (Cart);

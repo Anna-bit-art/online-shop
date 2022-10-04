@@ -59,13 +59,16 @@ class PDP extends React.Component {
 
 
     render() {
+        let product = this.props.product;
+        console.log(product)
+
         return <>
             {this.props.isFetching ? <h1>LOAD</h1> :
 
                 <div className={s.productPage}>
 
                     <div className={s.productImages}>
-                        {this.props.product.gallery.map((img, index) =>
+                        {product.gallery.map((img, index) =>
                             <img alt={'prevImg'} key={img} src={img} onClick={() => this.showPhoto(index)}/>
                         )}
                     </div>
@@ -78,11 +81,11 @@ class PDP extends React.Component {
 
 
                         <div className={s.info}>
-                            <h3>{this.props.product.name}</h3>
-                            <h3 className={s.brand}>{this.props.product.brand}</h3>
+                            <h3>{product.name}</h3>
+                            <h3 className={s.brand}>{product.brand}</h3>
 
 
-                            {this.props.product.attributes.map(attributes =>
+                            {product.attributes.map(attributes =>
                                 attributes.type === 'text'
                                     ? <SizeBox key={attributes.name} productId={this.props.product.id}
                                                name={attributes.name} items={attributes.items}
@@ -103,14 +106,19 @@ class PDP extends React.Component {
                                 <h4>PRICE:</h4>
                                 <p>
                                     {this.props.currentCurrency + ' '}
+
                                     {this.props.currentCurrency === '$' ? this.state.price : this.showPrice()}
                                 </p>
                             </div>
 
-                            <button onClick={() => this.props.addProduct(this.props.product, this.options)}>ADD TO
+                            <button onClick={() => this.props.addProduct(product, this.options)}>ADD TO
                                 CART
                             </button>
-                            <Interweave content={this.props.product.description}/>
+
+                            <div className={s.description}>
+                                <Interweave content={product.description}/>
+                            </div>
+
                         </div>
                     </div>
 

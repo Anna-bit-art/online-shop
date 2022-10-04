@@ -75,3 +75,38 @@
     color: #1D1F22;
     margin: 20px 0 20px 0;
 }
+.productPage .description span{
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 159.96%;
+    color: #1D1F22;
+}
+.productPage .productInfo h1{
+    display: flex;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    text-transform: revert;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0 0 8px 0;
+    line-height: normal;
+}
+.productPage .productInfo p{
+    display: flex;
+    width: 100%;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 159.96%;
+    color: #1D1F22;
+}
