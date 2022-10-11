@@ -37,6 +37,7 @@
     background: rgba(0, 0, 0, 0.73);
     cursor: pointer;
     z-index: 1000;
+    border: none;
 }
 .cartPage .photoSwitch input:hover{
     border: none;

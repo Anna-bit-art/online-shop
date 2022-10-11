@@ -21,40 +21,28 @@ class CategoryPage extends React.Component {
                     {this.props.products.map(product =>
                         <div className={s.productCard} key={product.id} >
 
-                                { !product.inStock
-                                    ?   <div className={s.outOfStock}>
-                                            <img className={s.productPhoto} alt={'product'} src={product.gallery[0]}/>
-                                            <span>OUT OF STOCK</span>
+                            <div className={!product.inStock ? s.outOfStock : null}>
+                                <NavLink to={'/pdp/' + product.id}>
+                                <img className={s.productPhoto} alt={'product'} src={product.gallery[0]}/>
+                                    {!product.inStock && <span>OUT OF STOCK</span> }
 
-                                            <div>
-                                                <h5>{product.name}</h5>
-                                                <p>
-                                                    {this.props.currentCurrency + ' '}
-                                                    {product.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
-                                                </p>
-                                            </div>
-                                        </div>
+                                <div>
+                                    <h5>{product.name} {product.brand}</h5>
+                                    <p>
+                                        {this.props.currentCurrency + ' '}
+                                        {product.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
+                                    </p>
+                                </div>
+                                </NavLink>
 
-
-
-                                    :   <div className={s.inStock}>
-                                            <NavLink to={'/pdp/' + product.id}>
-                                                <img className={s.productPhoto} alt={'product'} src={product.gallery[0]}/>
-                                                <div>
-                                                    <h5>{product.name} {product.brand}</h5>
-                                                    <p>
-                                                        {this.props.currentCurrency + ' '}
-                                                        {product.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
-                                                    </p>
-                                                </div>
-                                            </NavLink>
-                                            <div className={s.emptyCart}
-                                                 onClick={() => this.props.addProduct(product)}>
-                                                <img alt={'cart'} src={cart}/>
-                                            </div>
-                                        </div>
-
+                                {product.inStock &&
+                                    <div className={s.emptyCart}
+                                         onClick={() => this.props.addProduct(product, product.options)}>
+                                        <img alt={'cart'} src={cart}/>
+                                    </div>
                                 }
+
+                            </div>
                         </div>
                         )}
                 </div>

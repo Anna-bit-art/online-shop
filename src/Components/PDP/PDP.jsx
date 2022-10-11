@@ -4,10 +4,9 @@ import {compose} from "redux";
 import {requestProductId} from "../../redux/pdpReducer";
 import {connect} from "react-redux";
 import s from "./PDP.module.css";
-import SizeBox from "../common/SizeBox/SizeBox";
-import ColorBox from "../common/ColorBox/ColorBox";
 import {addProduct} from "../../redux/cartReducer";
 import {Interweave} from 'interweave';
+import Attributes from "../common/Attributes/Attributes";
 
 
 class PDP extends React.Component {
@@ -28,7 +27,9 @@ class PDP extends React.Component {
 
     state = {
         mainImage: this.props.product.gallery[0],
-        price: 0
+        price: 0,
+        options: [],
+        showFullDescription: false
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -44,25 +45,27 @@ class PDP extends React.Component {
         this.setState({mainImage: this.props.product.gallery[i]})
     }
 
+    addOption = (option) => {
+        let index = this.state.options.findIndex( item => item.name === option.name )
+        if (index === -1) {
+            this.setState({options: [...this.state.options, option]})
+        } else {
+            this.setState({options: this.state.options.map((el,i) => (i === index ? option : el)) })
+        }
+    }
 
-    // options = []
-    // updateProductOptions = (option) => {
-    //     console.log(option)
-    //     let index = this.options.findIndex(item => Object.keys(item)[0] === Object.keys(option)[0]);
-    //     if (index === -1) {
-    //         this.options.push(option)
-    //     } else {
-    //         this.options[index] = option
-    //     }
-    //
-    // }
+    showFullDescriptionHandler = () => {
+        this.setState({showFullDescription: !this.state.showFullDescription})
+    }
 
+    cleanOptions = () => {
+        this.setState({options: [] })
+    }
 
     render() {
         let product = this.props.product;
-        console.log(product)
-
         return <>
+
             {this.props.isFetching ? <h1>LOAD</h1> :
 
                 <div className={s.productPage}>
@@ -75,8 +78,9 @@ class PDP extends React.Component {
 
                     <div className={s.productInfo}>
 
-                        <div>
+                        <div className={!product.inStock ? s.outOfStock : null}>
                             <img className={s.productPhoto} alt={'product img'} src={this.state.mainImage}/>
+                            {!product.inStock && <span>OUT OF STOCK</span> }
                         </div>
 
 
@@ -86,44 +90,42 @@ class PDP extends React.Component {
 
 
                             {product.attributes.map(attributes =>
-                                attributes.type === 'text'
-                                    ? <SizeBox key={attributes.name} productId={this.props.product.id}
-                                               name={attributes.name} items={attributes.items}
-                                               updateProductOptions={this.updateProductOptions}/>
-                                    : null
+                                    <Attributes key={attributes.name} attributes={attributes}
+                                               addOption={this.addOption} isDisabled={false} />
                             )}
 
-                            {this.props.product.attributes.map(attributes =>
-                                attributes.type === 'swatch'
-                                    ? <ColorBox key={attributes.name} productId={this.props.product.id}
-                                                name={attributes.name} items={attributes.items}
-                                                updateProductOptions={this.updateProductOptions}/>
-                                    : null
-                            )}
 
 
                             <div className={s.priceBlock}>
                                 <h4>PRICE:</h4>
                                 <p>
                                     {this.props.currentCurrency + ' '}
-
                                     {this.props.currentCurrency === '$' ? this.state.price : this.showPrice()}
                                 </p>
                             </div>
 
-                            <button onClick={() => this.props.addProduct(product, this.options)}>ADD TO
-                                CART
+                            <button onClick={ product.inStock ? () => this.props.addProduct(product, this.state.options, () => this.cleanOptions()) : null}>
+                                ADD TO CART
                             </button>
 
-                            <div className={s.description}>
-                                <Interweave content={product.description}/>
-                            </div>
+                            {/*<div className={s.description}>*/}
+                            {/*    <Interweave content={product.description.slice(0, 50)} />*/}
+                            {/*    <button onClick={this.showFullDescriptionHandler}>Read {this.state.showFullDescription ? "less" : "more"}</button>*/}
+                            {/*</div>*/}
 
                         </div>
                     </div>
 
                 </div>
+
+
             }
+
+            {/*<div className={s.description}>*/}
+            {/*    <Interweave content={product.description} />*/}
+            {/*</div>*/}
+
+
         </>
     }
 }

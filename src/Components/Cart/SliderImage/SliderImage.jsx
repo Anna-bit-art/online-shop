@@ -27,8 +27,8 @@ export class SliderImage extends React.Component {
 
         <img alt={'orderImg'} src={this.props.images[this.state.counter]}/>
 
+            { this.props.images.length > 1 &&
             <div className={s.photoSwitch}>
-
                 <div className={s.left} onClick={this.prevPhoto}>
                     <input type={'button'} />
                 </div>
@@ -36,8 +36,9 @@ export class SliderImage extends React.Component {
                 <div onClick={this.nextPhoto}>
                     <input type={'button'} />
                 </div>
-
             </div>
+            }
+
         </>
     )
    }

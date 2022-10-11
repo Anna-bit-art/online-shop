@@ -46,7 +46,6 @@
     box-sizing: border-box;
     z-index: 300;
     filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
-
 }
 
 .items .currenciesList input[type="button" i] {
@@ -59,6 +58,7 @@
     box-sizing: border-box;
     background: #ffffff;
     cursor: pointer;
+    border: none;
 }
 
 .items .currenciesList input[value] {

@@ -5,7 +5,18 @@ body{
   max-width: 1440px;
   margin: 0 auto;
 }
-
+.over{
+  position: absolute;
+  background: dimgrey;
+  width: auto;
+  height: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(57, 55, 72, 0.22);
+  z-index: 50
+}
 .wrapper{
   display: grid;
   width: 100%;
@@ -19,10 +30,6 @@ body{
   height: auto;
   padding: 80px 100px 190px;
   position: relative;
-}
-
-.overlay {
-  color: rgba(57, 55, 72, 0.22);
 }
 
 /**************************text_style**************************/

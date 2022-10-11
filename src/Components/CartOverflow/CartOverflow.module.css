@@ -1,15 +1,15 @@
+
 .cartOverflow {
     position: absolute;
-    top: 80px;
+    top: 78px;
     width: 325px;
     height: auto;
-    right: 78px;
+    right: 72px;
     z-index: 600;
 
     padding: 32px 16px;
     margin: 0;
     box-sizing: border-box;
-    border: 1px solid black;
 
     align-items: initial;
     justify-content: initial;
@@ -17,8 +17,6 @@
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
-    /*box-shadow: 0 0 0 9999px rgba(57, 55, 72, 0.22);*/
-
 }
 
 .cartOverflow h1{

@@ -1,3 +1,4 @@
+
 let ADD_ORDER = 'ADD_ORDER';
 let INCREASE_QUANTITY = 'INCREASE_QUANTITY';
 let DECREASE_QUANTITY = 'DECREASE_QUANTITY';
@@ -22,46 +23,53 @@ const cartReducer = (state = initialState, action) => {
         }
 
         case ADD_ORDER: {
-            if (state.numberOrders === 0) {
-                let order = {
-                    id: action.payload.id,
-                    quantity: 1,
-                    name: action.payload.name,
-                    brand: action.payload.brand,
-                    gallery: action.payload.gallery,
-                    attributes: action.payload.attributes,
-                    prices: action.payload.prices,
-                    options: action.options,
-                }
-                state.orders.push(order)
-            } else {
-                let check = false;
-                state.orders.map((item, key) => {
-                    if (item.id === action.payload.id) {
-                        state.orders[key].quantity++;
-                        check = true;
-                    }
-                })
-                if (!check) {
-                    let _order = {
+
+            if (action.payload.attributes.length !== action.options.length) {
+                let difference = action.payload.attributes.filter(o1 => !action.options.some(o2 => o1.name === o2.name));
+                difference.forEach((el) => action.options.push({name: el.name, id: el.items[0].id}))
+            }
+
+            let index = state.orders.findIndex(order => order.id === action.payload.id)
+            if (index !== -1) {
+                if (compareArray(state.orders[index].options, action.options)) {
+                    state.orders[index].quantity++
+                } else {
+                    let order = {
                         id: action.payload.id,
-                        quantity: 1,
                         name: action.payload.name,
                         brand: action.payload.brand,
                         gallery: action.payload.gallery,
-                        attributes: action.payload.attributes,
                         prices: action.payload.prices,
+                        attributes: action.payload.attributes,
                         options: action.options,
+                        quantity: 1
                     }
-                    state.orders.push(_order);
+                    state.orders.push(order)
                 }
             }
+            else {
+                let order = {
+                    id: action.payload.id,
+                    name: action.payload.name,
+                    brand: action.payload.brand,
+                    gallery: action.payload.gallery,
+                    prices: action.payload.prices,
+                    attributes: action.payload.attributes,
+                    options: action.options,
+                    quantity: 1
+                }
+
+                state.orders.push(order)
+            }
+
 
             return {
                 ...state,
                 numberOrders: state.numberOrders + 1
             }
         }
+
+
 
         case INCREASE_QUANTITY: {
             state.numberOrders++
@@ -82,7 +90,9 @@ const cartReducer = (state = initialState, action) => {
                     numberOrders: state.numberOrders - quantity,
                     orders: state.orders.filter(order => {
                         return order.id !== state.orders[action.payload].id
-                    })
+                        }
+
+                    )
                 }
             }
             return {
@@ -97,9 +107,27 @@ const cartReducer = (state = initialState, action) => {
 }
 
 export const checkCart = () => ({type: IS_CART_OPEN})
-export const addProduct = (payload, options) => ({type: ADD_ORDER, payload, options})
+export const setProduct = (payload, options) => ({type: ADD_ORDER, payload, options})
 export const increaseQuantity = (payload) => ({type: INCREASE_QUANTITY, payload})
 export const decreaseQuantity = (payload) => ({type: DECREASE_QUANTITY, payload})
+
+
+export const addProduct = (payload, options) => (dispatch) => {
+    dispatch(setProduct(payload, options));
+}
+
+export const compareArray = (a, b) => {
+    if (a.length !== b.length)
+        return false
+    a.sort((b,c) => b.name.charCodeAt(0) - c.name.charCodeAt(0))
+    b.sort((b,c) => b.name.charCodeAt(0) - c.name.charCodeAt(0))
+    for (let i = 0; i < a.length; i++) {
+        if (a[i].name !== b[i].name) return false
+        if (a[i].id !== b[i].id) return false
+    }
+    return true
+}
+
 
 
 

@@ -71,7 +71,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    object-fit: cover;
+    object-fit: contain;
     vertical-align: middle;
 }
 
@@ -147,12 +147,5 @@ input[value='-']{
     text-decoration: underline 2px #1D1F22;
 }
 
-
-/*.cartPage .cartProduct .cartProductPhoto .selectAmount div p {*/
-/*    text-align: center;*/
-/*    margin: 0;*/
-/*    line-height: 45px;*/
-/*    font-size: 18px;*/
-/*}*/
 
 

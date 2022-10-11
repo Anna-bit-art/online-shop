@@ -34,7 +34,7 @@ const pdpReducer = (state = initialState, action) => {
                     category: action.payload.category,
                     brand: action.payload.brand,
                     gallery: action.payload.gallery,
-                    attributes: action.payload.attributes,
+                    attributes: action.payload.attributes.slice().sort((b,c) => c.type.charCodeAt(0) - b.type.charCodeAt(0)),
                     prices: action.payload.prices
                 }
             }

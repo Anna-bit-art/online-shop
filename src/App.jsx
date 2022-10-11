@@ -6,6 +6,8 @@ import Header from "./Components/Header/Header";
 import Cart from "./Components/Cart/Cart";
 import React from "react";
 import {connect} from "react-redux";
+import {checkCart} from "./redux/cartReducer";
+
 
 
 class App extends React.Component {
@@ -13,13 +15,14 @@ class App extends React.Component {
         return (
             <div className={s.wrapper}>
                 <Header/>
-                <div className={`${s.wrapperContent} ${this.props.isCartOpen && s.overlay}`}>
+                <div className={s.wrapperContent}>
+                    {this.props.isCartOpen && <div className={s.over} onClick={this.props.checkCart}> </div>}
                     <Routes>
-                        <Route path='/category/:categoryId' element={<CategoryPage/>}/>
-                        <Route path='/pdp/:productId' element={<PDP/>}/>
-                        <Route path='/cart' element={<Cart/>}/>
-                    </Routes>
-                </div>
+                            <Route path='/category/:categoryId' element={<CategoryPage/>}/>
+                            <Route path='/pdp/:productId' element={<PDP/>}/>
+                            <Route path='/cart' element={<Cart/>}/>
+                        </Routes>
+                    </div>
             </div>
 
         );
@@ -27,10 +30,10 @@ class App extends React.Component {
 }
 
 
-// let mapStateToProps = (state) => {
-//     return{
-//         isCartOpen: state.cart.isCartOpen,
-//     }
-// }
-export default connect(null, null)(App)
+let mapStateToProps = (state) => {
+    return{
+        isCartOpen: state.cart.isCartOpen
+    }
+}
+export default connect(mapStateToProps, {checkCart})(App)
 

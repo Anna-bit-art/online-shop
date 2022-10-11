@@ -47,15 +47,41 @@
     width: 38rem;
     height: 32rem;
     display: flex;
-    object-fit: cover;
+    object-fit: contain;
     vertical-align: middle;
 
     filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
 
+.productPage .productInfo .outOfStock{
+    position: relative;
+    opacity: .5;
+}
+
+.productPage .productInfo .outOfStock span{
+    display: flex;
+    justify-content: center;
+    align-items: initial;
+    width: 100%;
+    height: max-content;
+    position: absolute;
+    left: 0;
+    top: 35%;
+    right: 0;
+
+    font-style: normal;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 30px;
+    line-height: 160%;
+    color: rgba(141, 143, 154, 1)
+}
+
+
 .productPage .productInfo .info {
     width: 18.2rem;
     height: 37rem;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -75,11 +101,14 @@
     color: #1D1F22;
     margin: 20px 0 20px 0;
 }
-.productPage .description span{
+
+
+
+.description span{
     display: flex;
     width: 100%;
     align-items: flex-start;
-    flex-direction: column;
+    flex-direction: row;
 
     font-family: 'Roboto', sans-serif;
     font-style: normal;
@@ -88,25 +117,29 @@
     line-height: 159.96%;
     color: #1D1F22;
 }
-.productPage .productInfo h1{
+.description span, h1,h2,h3,h4, p{
     display: flex;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    text-transform: revert;
-    font-weight: 500;
-    font-size: 20px;
-    margin: 0 0 8px 0;
-    line-height: normal;
+    width: 100%
 }
-.productPage .productInfo p{
-    display: flex;
-    width: 100%;
+/*.productPage .productInfo h1{*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    font-family: 'Roboto', sans-serif;*/
+/*    font-style: normal;*/
+/*    text-transform: revert;*/
+/*    font-weight: 500;*/
+/*    font-size: 20px;*/
+/*    margin: 0 0 8px 0;*/
+/*    line-height: normal;*/
+/*}*/
+/*.productPage .productInfo p{*/
+/*    display: flex;*/
+/*    width: 100%;*/
 
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 159.96%;
-    color: #1D1F22;
-}
+/*    font-family: 'Roboto', sans-serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 16px;*/
+/*    line-height: 159.96%;*/
+/*    color: #1D1F22;*/
+/*}*/

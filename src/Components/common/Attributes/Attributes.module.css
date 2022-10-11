@@ -1,0 +1,117 @@
+/*****************sizeBox*************************/
+.sizeBox {
+    display: grid;
+    grid-template-areas:
+    'size'
+    'box';
+    position: relative;
+    width: 276px;
+    height: 70px;
+    margin-bottom: 16px;
+}
+
+.sizeBox .title {
+    grid-area: size;
+    margin-bottom: 7px;
+}
+
+.sizeBox .size {
+    grid-area: box;
+    display: flex;
+    align-items: end;
+    flex-flow: row;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.sizeBox input[type="button" i] {
+    width: 63px;
+    height: 45px;
+
+    background: #FFFFFF;
+    border: 1px solid #1D1F22;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    text-align: center;
+    color: #1D1F22;
+    margin: 0;
+    line-height: 45px;
+    font-size: 18px;
+}
+
+.sizeBox input[type="button" i]:hover {
+    background: #1D1F22;
+    color: #FFFFFF;
+}
+
+.sizeBox input[value] {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #1D1F22;
+}
+
+.sizeBox input[type="button" i].select {
+    background: #1D1F22;
+    color: #FFFFFF;
+}
+
+
+/*************************colorBox******************************/
+
+.colorBox {
+    display: grid;
+    grid-template-areas:
+    'color'
+    'box';
+    position: relative;
+    width: 116px;
+    height: 62px;
+    margin-bottom: 36px;
+}
+
+.title {
+    grid-area: color;
+    margin-bottom: 8px;
+}
+
+.colorBox .colors {
+    grid-area: box;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+
+}
+
+.colorBox .colors input[type="button" i] {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    outline: 1px solid #fff;
+    outline-offset: 1px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 4px 1px rgba(230, 230, 230, 1);
+}
+
+.colorBox .colors input[value] {
+    color: transparent;
+}
+
+.colorBox .colors input[type="button" i]:hover {
+    outline: 1px solid rgba(94, 206, 123, 1);
+    outline-offset: 1px;
+}
+
+.colorBox .colors input[type="button" i].selectColor {
+    outline: 1px solid rgba(94, 206, 123, 1);
+}
+

@@ -54,11 +54,13 @@ class Actions extends React.Component {
                 </div>
 
 
+
                 {this.props.isCartOpen && (
                     <CartOverflow props={this.props} checkCart={this.props.checkCart}
                                   currentCurrency={this.props.currentCurrency}
                                   increaseQuantity={this.props.increaseQuantity}
-                                  decreaseQuantity={this.props.decreaseQuantity}/>
+                                  decreaseQuantity={this.props.decreaseQuantity}
+                    />
                 )}
             </>
         )

@@ -25,7 +25,8 @@ const categoryReducer = (state = initialState, action) => {
                         id: product.id,
                         inStock: product.inStock,
                         name: product.name,
-                        prices: product.prices
+                        prices: product.prices,
+                        options: []
                     }))
             }
         }
