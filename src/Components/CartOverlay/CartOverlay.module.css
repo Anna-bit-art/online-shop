@@ -1,0 +1,125 @@
+.cartOverflow {
+    position: absolute;
+    top: 78px;
+    width: 325px;
+    height: auto;
+    right: 72px;
+    z-index: 2;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.cartOverflow p {
+    text-transform: capitalize;
+    margin-bottom: 32px;
+    font-weight: 700;
+    display: inline-flex;
+}
+
+.cartOverflow span{
+    text-transform: lowercase;
+    font-size: 16px;
+    line-height: 160%;
+    margin: 0;
+}
+.cartOverflow h2 {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 160%;
+}
+/*********************orders***************************/
+.cartOverflow .orders {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+    max-height: 600px;
+    overflow: auto;
+    padding: 2px;
+}
+.cartOverflow .orders p{
+    margin: 8px 0 0 0;
+}
+/****cartProduct***************************/
+.cartOverflow .cartProduct{
+    display: flex;
+}
+
+.cartOverflow .cartProduct h3 {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 160%;
+    margin-bottom: 4px;
+}
+.cartOverflow .price{
+    width: 100%;
+}
+
+/*********photo***************************/
+.cartOverflow .photo {
+    display: flex;
+    gap: 8px;
+}
+
+.cartOverflow .photo img {
+    width: 121px;
+    height: 190px;
+    display: flex;
+    object-fit: contain;
+    vertical-align: middle;
+    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+}
+
+/*********amount***************************/
+.cartOverflow .amount {
+    height: 190px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cartOverflow .amount input {
+    box-sizing: border-box;
+    border: 1px solid #1D1F22;
+    opacity: 0.7;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+input[value='-']{
+    padding-bottom: 2px;
+}
+
+.cartOverflow .amount .label {
+    border: none;
+}
+
+/******************************total+buttons***************************/
+
+
+.cartOverflow .total, .buttons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+.cartOverflow .total{
+    height: 27px;
+}
+.cartOverflow .total p{
+    padding-right: 4px;
+}
+
+.cartOverflow .buttons button{
+    display: flex;
+    width: 140px;
+    height: 43px;
+    padding: 16px 28px;
+    font-size: 14px;
+}

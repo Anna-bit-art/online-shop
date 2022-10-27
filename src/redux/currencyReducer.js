@@ -1,15 +1,15 @@
 import {GET_CURRENCIES} from "../query/currencies";
 
 
-const SET_CURRENCIES = 'SET_CURRENCIES';
-const SET_CURRENT_CURRENCY = 'SET_CURRENT_CURRENCY';
+const SET_CURRENCIES = 'currency/SET_CURRENCIES';
+const SET_CURRENT_CURRENCY = 'currency/SET_CURRENT_CURRENCY';
 
 let initialState = {
     currencies: [],
     currentCurrency: '$'
 }
 
-const headerReducer = (state = initialState, action) => {
+const currencyReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CURRENCIES: {
             return {...state, currencies: [...action.currencies]}
@@ -43,4 +43,4 @@ export const getCurrentCurrency = (index) => (dispatch) => {
 }
 
 
-export default headerReducer;
+export default currencyReducer;

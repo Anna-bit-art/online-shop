@@ -1,18 +1,19 @@
+
 /*****************sizeBox*************************/
 .sizeBox {
     display: grid;
+    row-gap: 8px;
     grid-template-areas:
     'size'
     'box';
     position: relative;
     width: 276px;
     height: 70px;
-    margin-bottom: 16px;
+    margin-top: 24px;
 }
 
-.sizeBox .title {
+.sizeBox h4{
     grid-area: size;
-    margin-bottom: 7px;
 }
 
 .sizeBox .size {
@@ -20,7 +21,6 @@
     display: flex;
     align-items: end;
     flex-flow: row;
-    justify-content: flex-start;
     gap: 8px;
 }
 
@@ -38,11 +38,6 @@
     margin: 0;
     line-height: 45px;
     font-size: 18px;
-}
-
-.sizeBox input[type="button" i]:hover {
-    background: #1D1F22;
-    color: #FFFFFF;
 }
 
 .sizeBox input[value] {
@@ -67,18 +62,18 @@
 
 .colorBox {
     display: grid;
+    row-gap: 8px;
     grid-template-areas:
     'color'
     'box';
     position: relative;
     width: 116px;
     height: 62px;
-    margin-bottom: 36px;
+    margin-top: 24px;
 }
 
-.title {
+.colorBox h4 {
     grid-area: color;
-    margin-bottom: 8px;
 }
 
 .colorBox .colors {
@@ -89,7 +84,6 @@
     justify-content: center;
     gap: 8px;
     padding: 0;
-
 }
 
 .colorBox .colors input[type="button" i] {
@@ -104,11 +98,6 @@
 
 .colorBox .colors input[value] {
     color: transparent;
-}
-
-.colorBox .colors input[type="button" i]:hover {
-    outline: 1px solid rgba(94, 206, 123, 1);
-    outline-offset: 1px;
 }
 
 .colorBox .colors input[type="button" i].selectColor {

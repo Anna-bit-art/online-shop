@@ -2,16 +2,17 @@ import {applyMiddleware, combineReducers, compose} from "redux";
 import thunkMiddleware from "redux-thunk";
 import categoryReducer from "./categoryReducer";
 import cartReducer from "./cartReducer";
-import pdpReducer from "./pdpReducer";
-import headerReducer from "./headerReducer";
+import productReducer from "./productReducer";
+import currencyReducer from "./currencyReducer";
 
 
 const {createStore} = require("redux");
+
 let reducers = combineReducers({
-    header: headerReducer,
+    currency: currencyReducer,
     category: categoryReducer,
     cart: cartReducer,
-    pdp: pdpReducer
+    product: productReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

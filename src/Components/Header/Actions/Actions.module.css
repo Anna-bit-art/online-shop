@@ -1,117 +1,101 @@
-.items {
+.actions {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 204px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 22px;
     height: 40px;
 }
 
-.items div {
+.actions div {
     display: flex;
-    flex: 1;
     align-items: center;
-    justify-content: right;
+    justify-content: flex-end;
     cursor: pointer;
 }
 
-.items label {
-    font-style: normal;
+/*****************currency*******************************/
+.actions label {
     font-weight: 500;
     font-size: 18px;
     line-height: 160%;
-    display: flex;
-    color: #1D1F22;
     cursor: pointer;
 }
 
-.items .selectCurrency:after {
+.actions .vector {
+    display: block;
+    filter: none;
     width: 6px;
     height: 3px;
-    border: none;
-    content: '\02C5';
+    margin: 21px 0 15px 10px;
 }
 
-.items .currenciesList {
+.actions .vectorRotate{
+    transform: rotate(180deg);
+}
+
+/******************currenciesList***********************/
+.actions .currenciesList {
     width: 114px;
     height: auto;
-    display: flex;
     flex-direction: column;
     position: absolute;
     top: 65px;
     right: 78px;
-    margin: 0;
     padding-top: 20px;
     padding-bottom: 20px;
     gap: 0;
     box-sizing: border-box;
-    z-index: 300;
+    z-index: 1;
     filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
 
-.items .currenciesList input[type="button" i] {
+.actions .currenciesList input[type="button" i] {
     display: flex;
-    flex: 1;
     width: 100%;
-    height: 45px;
     padding: 8px 0;
-    justify-content: left;
-    box-sizing: border-box;
     background: #ffffff;
     cursor: pointer;
     border: none;
 }
 
-.items .currenciesList input[value] {
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
+.actions .currenciesList input[value] {
     font-weight: 500;
     font-size: 18px;
     line-height: 160%;
-    text-align: right;
-    color: #1D1F22;
     padding-left: 20px;
 }
 
-.items .currenciesList input[type="button" i]:hover {
+.actions .currenciesList input[type="button" i]:hover {
     background: #EEEEEE;
     box-sizing: border-box;
-    border: none;
 }
 
 
-.items img {
-    display: flex;
+
+/*************************cart*******************************/
+
+.actions .cart {
     filter: invert(100);
     width: 20px;
     height: 20px;
-    margin-right: 0;
-    margin-left: auto;
 }
 
-
-.items .numberOrders {
+.actions .numberOrders {
     position: absolute;
     top: 25px;
     right: 88px;
-    z-index: 100;
-
+    z-index: 1;
     width: 20px;
     height: 20px;
-
     background: #1D1F22;
     border-radius: 60px;
-
     color: #fff;
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    text-transform: uppercase;
 }
 
 

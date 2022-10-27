@@ -1,13 +1,12 @@
 import s from './App.module.css';
 import {Route, Routes} from "react-router-dom";
 import CategoryPage from "./Components/CategoryPage/CategoryPage";
-import PDP from "./Components/PDP/PDP";
+import PDP from "./Components/ProductPage/ProductPage";
 import Header from "./Components/Header/Header";
-import Cart from "./Components/Cart/Cart";
+import Cart from "./Components/CartPage/CartPage";
 import React from "react";
 import {connect} from "react-redux";
 import {checkCart} from "./redux/cartReducer";
-
 
 
 class App extends React.Component {
@@ -18,20 +17,19 @@ class App extends React.Component {
                 <div className={s.wrapperContent}>
                     {this.props.isCartOpen && <div className={s.over} onClick={this.props.checkCart}> </div>}
                     <Routes>
-                            <Route path='/category/:categoryId' element={<CategoryPage/>}/>
-                            <Route path='/pdp/:productId' element={<PDP/>}/>
-                            <Route path='/cart' element={<Cart/>}/>
-                        </Routes>
-                    </div>
+                        <Route path='/category/:categoryId' element={<CategoryPage/>}/>
+                        <Route path='/pdp/:productId' element={<PDP/>}/>
+                        <Route path='/cart' element={<Cart/>}/>
+                    </Routes>
+                </div>
             </div>
-
         );
     }
 }
 
 
 let mapStateToProps = (state) => {
-    return{
+    return {
         isCartOpen: state.cart.isCartOpen
     }
 }

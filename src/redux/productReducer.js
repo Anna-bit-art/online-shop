@@ -1,8 +1,8 @@
 import {GET_PRODUCT} from "../query/product";
 
-const SET_PRODUCT = 'SET_PRODUCT';
-const SET_PRICES = 'SET_PRICES';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const SET_PRODUCT = 'product/SET_PRODUCT';
+const SET_PRICES = 'product/SET_PRICES';
+const TOGGLE_IS_FETCHING = 'product/TOGGLE_IS_FETCHING';
 
 
 let initialState = {
@@ -20,7 +20,7 @@ let initialState = {
     }
 }
 
-const pdpReducer = (state = initialState, action) => {
+const productReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SET_PRODUCT: {
@@ -35,7 +35,11 @@ const pdpReducer = (state = initialState, action) => {
                     brand: action.payload.brand,
                     gallery: action.payload.gallery,
                     attributes: action.payload.attributes.slice().sort((b,c) => c.type.charCodeAt(0) - b.type.charCodeAt(0)),
-                    prices: action.payload.prices
+                    prices: action.payload.prices,
+
+                    options: [],
+                    firstPrice: action.payload.prices[0].amount,
+                    mainImage: action.payload.gallery[0]
                 }
             }
         }
@@ -61,6 +65,7 @@ export const requestProductId = (productID) => async (dispatch) => {
     dispatch(toggleIsFetching(false));
 }
 
-export default pdpReducer;
+
+export default productReducer;
 
 
