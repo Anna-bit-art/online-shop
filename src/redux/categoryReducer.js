@@ -3,9 +3,11 @@ import {GET_CATEGORIES, GET_CATEGORY_PRODUCTS} from "../query/categories";
 const SET_PRODUCTS = 'SET_PRODUCTS';
 const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
 const SET_CATEGORIES = 'SET_ALL_PRODUCTS';
+const TOGGLE_IS_FETCHING = 'category/TOGGLE_IS_FETCHING';
 
 
 let initialState = {
+    isFetching: false,
     categories: [],
     currentCategory: '',
     products: []
@@ -14,6 +16,11 @@ let initialState = {
 const categoryReducer = (state = initialState, action) => {
 
     switch (action.type) {
+
+        case TOGGLE_IS_FETCHING: {
+            return {...state, isFetching: action.isFetching}
+        }
+
         case SET_PRODUCTS: {
             return {
                 ...state,
@@ -46,6 +53,7 @@ const categoryReducer = (state = initialState, action) => {
 export const setCategories = (categories) => ({type: SET_CATEGORIES, categories});
 export const setCurrentCategory = (currentCategory) => ({type: SET_CURRENT_CATEGORY, currentCategory});
 export const setProducts = (payload) => ({type: SET_PRODUCTS, payload});
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 
 export const getCategories = () => async (dispatch) => {
@@ -54,9 +62,11 @@ export const getCategories = () => async (dispatch) => {
 }
 
 export const requestProducts = (currentCategory) => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
     dispatch(setCurrentCategory(currentCategory));
     let products = await GET_CATEGORY_PRODUCTS(currentCategory)
     dispatch(setProducts(products));
+    dispatch(toggleIsFetching(false));
 }
 
 

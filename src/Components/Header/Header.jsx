@@ -3,16 +3,21 @@ import s from "./Header.module.css";
 import logo from "../../img/a-logo.png";
 import Actions from "./Actions/Actions";
 import React from "react";
+import {connect} from "react-redux";
+import {getCategories} from "../../redux/categoryReducer";
+import {getCurrencies} from "../../redux/headerReducer";
 
 
 
 class Header extends React.Component {
+    componentDidMount() {
+        this.props.getCategories();
+        this.props.getCurrencies();
+    }
     render() {
-
         return (
-            <header className={s.header} >
-
-                <div className={s.navbar}>
+            <header>
+                <div style={{marginTop:28}} >
                     <Navbar/>
                 </div>
 
@@ -20,12 +25,12 @@ class Header extends React.Component {
                     <img alt={'logo'} src={logo}/>
                 </div>
 
-                <div className={s.actions}>
+                <div style={{marginTop:23}}>
                     <Actions/>
                 </div>
-
             </header>
         )
     }
 }
-export default Header;
+export default connect(null, {getCategories, getCurrencies})
+(Header)

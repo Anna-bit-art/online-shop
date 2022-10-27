@@ -7,41 +7,46 @@ export class SliderImage extends React.Component {
         counter: 0
     }
 
-    nextPhoto = () => {
-        let images = this.props.images.length - 1
-        this.setState({ counter: this.state.counter > images || this.state.counter === images
-                ? 0
-                : this.state.counter + 1 })
-    }
-
     prevPhoto = () => {
-        let images = this.props.images.length - 1
-        this.setState({ counter: (this.state.counter > images || this.state.counter === 0 )
+        let gallery = this.props.gallery.length - 1
+        this.setState({
+            counter: (this.state.counter > gallery || this.state.counter === 0)
                 ? 0
-                : this.state.counter - 1 })
+                : this.state.counter - 1
+        })
     }
 
-   render() {
-    return (
-        <>
+    nextPhoto = () => {
+        let gallery = this.props.gallery.length - 1
+        this.setState({
+            counter: this.state.counter > gallery || this.state.counter === gallery
+                ? gallery
+                : this.state.counter + 1
+        })
+    }
 
-        <img alt={'orderImg'} src={this.props.images[this.state.counter]}/>
 
-            { this.props.images.length > 1 &&
-            <div className={s.photoSwitch}>
-                <div className={s.left} onClick={this.prevPhoto}>
-                    <input type={'button'} />
+    render() {
+        return (
+            <>
+
+                <img alt={'orderImg'} src={this.props.gallery[this.state.counter]}/>
+
+                {this.props.gallery.length > 1 &&
+                <div className={s.photoSwitch}>
+                    <div className={s.left} onClick={this.prevPhoto}>
+                        <input type={'button'}/>
+                    </div>
+
+                    <div onClick={this.nextPhoto}>
+                        <input type={'button'}/>
+                    </div>
                 </div>
+                }
 
-                <div onClick={this.nextPhoto}>
-                    <input type={'button'} />
-                </div>
-            </div>
-            }
-
-        </>
-    )
-   }
+            </>
+        )
+    }
 }
 
 export default SliderImage;

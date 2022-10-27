@@ -1,3 +1,4 @@
+import {compareArray} from "./funtions";
 
 let ADD_ORDER = 'ADD_ORDER';
 let INCREASE_QUANTITY = 'INCREASE_QUANTITY';
@@ -88,11 +89,12 @@ const cartReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     numberOrders: state.numberOrders - quantity,
-                    orders: state.orders.filter(order => {
-                        return order.id !== state.orders[action.payload].id
-                        }
+                    orders: state.orders.filter(order =>
+                         ((order.id !== state.orders[action.payload].id) ||
+                            (compareArray(order.options, state.orders[action.payload].options) === false))
 
-                    )
+            )
+
                 }
             }
             return {
@@ -115,20 +117,5 @@ export const decreaseQuantity = (payload) => ({type: DECREASE_QUANTITY, payload}
 export const addProduct = (payload, options) => (dispatch) => {
     dispatch(setProduct(payload, options));
 }
-
-export const compareArray = (a, b) => {
-    if (a.length !== b.length)
-        return false
-    a.sort((b,c) => b.name.charCodeAt(0) - c.name.charCodeAt(0))
-    b.sort((b,c) => b.name.charCodeAt(0) - c.name.charCodeAt(0))
-    for (let i = 0; i < a.length; i++) {
-        if (a[i].name !== b[i].name) return false
-        if (a[i].id !== b[i].id) return false
-    }
-    return true
-}
-
-
-
 
 export default cartReducer;

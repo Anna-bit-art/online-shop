@@ -1,121 +1,87 @@
-
 .cartOverflow {
     position: absolute;
     top: 78px;
     width: 325px;
     height: auto;
     right: 72px;
-    z-index: 600;
-
+    z-index: 2;
     padding: 32px 16px;
-    margin: 0;
     box-sizing: border-box;
-
-    align-items: initial;
-    justify-content: initial;
-
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
 }
 
-.cartOverflow h1{
-    height: 26px;
+.cartOverflow p {
     text-transform: capitalize;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 160%;
-    color: #1D1F22;
     margin-bottom: 32px;
+    font-weight: 700;
+    display: inline-flex;
 }
-.cartOverflow h1 span{
+
+.cartOverflow span{
     text-transform: lowercase;
-    font-weight: 500;
-    font-style: normal;
     font-size: 16px;
     line-height: 160%;
-    color: #1D1F22;
-    display: inline-block;
+    margin: 0;
 }
+.cartOverflow h2 {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 160%;
+}
+/*********************orders***************************/
 .cartOverflow .orders {
     display: flex;
     flex-direction: column;
     gap: 40px;
-
     position: relative;
     max-height: 600px;
-    overflow: scroll;
+    overflow: auto;
+    padding: 2px;
 }
-.cartOverflow .orders::-webkit-scrollbar{
-    width: 0;
+.cartOverflow .orders p{
+    margin: 8px 0 0 0;
 }
+/****cartProduct***************************/
 .cartOverflow .cartProduct{
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    padding: 0;
-    height: auto;
 }
 
-/******************************cartProductInfo***************************/
-.cartOverflow .cartProductInfo {
-    flex: 1;
-    padding: 0;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.cartOverflow .cartProductInfo h3 {
+.cartOverflow .cartProduct h3 {
     font-weight: 300;
     font-size: 16px;
     line-height: 160%;
-    display: flex;
-    align-items: center;
     margin-bottom: 4px;
 }
-.cartOverflow .priceBlock{
-    display: flex;
-    align-items: flex-start;
+.cartOverflow .price{
     width: 100%;
 }
 
-.cartOverflow .priceBlock span{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 160%;
-    color: #1D1F22;
-    margin-bottom: 8px;
-}
-
-
-/******************************cartProductPhoto***************************/
-.cartOverflow .cartProductPhoto {
+/*********photo***************************/
+.cartOverflow .photo {
     display: flex;
-    flex: 1;
-    flex-direction: row;
     gap: 8px;
-    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
-.cartOverflow .cartProductPhoto img {
+
+.cartOverflow .photo img {
     width: 121px;
     height: 190px;
     display: flex;
-    object-fit: cover;
+    object-fit: contain;
     vertical-align: middle;
+    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
-.cartOverflow .selectAmount {
-    width: 24px;
-    height: 190px;
 
+/*********amount***************************/
+.cartOverflow .amount {
+    height: 190px;
     display: flex;
-    flex: 1;
     align-items: flex-end;
     flex-direction: column;
     justify-content: space-between;
 }
-.cartOverflow .selectAmount input {
+.cartOverflow .amount input {
     box-sizing: border-box;
     border: 1px solid #1D1F22;
     opacity: 0.7;
@@ -123,8 +89,6 @@
     height: 24px;
     cursor: pointer;
     background-color: transparent;
-
-    text-align: center;
     font-size: 16px;
     font-weight: 500;
 }
@@ -133,26 +97,22 @@ input[value='-']{
     padding-bottom: 2px;
 }
 
-.cartOverflow .selectAmount .label {
+.cartOverflow .amount .label {
     border: none;
 }
 
 /******************************total+buttons***************************/
 
+
 .cartOverflow .total, .buttons{
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     margin-top: 32px;
 }
-.cartOverflow .total h5{
-    display: inline-flex;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
-    color: #1D1F22;
+.cartOverflow .total{
+    height: 27px;
+}
+.cartOverflow .total p{
     padding-right: 4px;
 }
 
@@ -162,5 +122,4 @@ input[value='-']{
     height: 43px;
     padding: 16px 28px;
     font-size: 14px;
-    line-height: 120%;
 }

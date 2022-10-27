@@ -1,29 +1,21 @@
-header{
+header {
     position: relative;
-}
-
-.header {
+    padding: 0 101px;
     grid-area: header;
     display: flex;
     height: 80px;
-    padding: 0 101px;
     background: #fff;
 }
 
-.header div {
+header div {
     flex: 1 auto;
     float: right;
 }
 
-.navbar{
-    margin-top: 24px;
-    width: 234px;
-    height: 56px;
-}
-
-.logo{
+.logo {
     width: 60%;
 }
+
 .logo img {
     display: block;
     width: 41px;
@@ -31,6 +23,3 @@ header{
     margin: 24px auto auto;
 }
 
-.actions {
-    margin-top: 23px;
-}

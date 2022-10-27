@@ -1,27 +1,30 @@
 import s from "./AttributesMin.module.css";
 import React from "react";
+import {compareArray, selectAttribute} from "../../../redux/funtions";
 
 
 class AttributesMin extends React.Component {
 
     state = {
-        attributes: this.props.attributes.items
+        isSelected: this.props.attributes.items[0]
     }
 
     componentDidMount() {
-        let options = this.props.options
-        let selectOption = options[options.findIndex((el) => el.name === this.props.attributes.name)] //нашла нужную опцию в массиве опций
-        let index = this.props.attributes.items.findIndex(item => item.id === selectOption.id) //нашла индекс такой же опции в аттрибутах
-
         this.setState({
-            attributes: this.state.attributes.map((item, i) => (i === index ? {...item, isSelected: true} : item))
+            isSelected: this.props.attributes.items[selectAttribute(this.props.options, this.props.attributes)]
         })
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (compareArray(prevProps.options, this.props.options) === false) {
+            this.setState({
+                isSelected: this.props.attributes.items[selectAttribute(this.props.options, this.props.attributes)]
+            })
+        }
     }
 
     render() {
         return (
-
-
             <>
                 {this.props.attributes.type === 'text'
                     ? <div className={s.sizeBoxMin}>
@@ -30,9 +33,9 @@ class AttributesMin extends React.Component {
                         </div>
 
                         <div className={s.size}>
-                            {this.state.attributes.map((item) =>
+                            {this.props.attributes.items.map((item) =>
                                 <input key={item.id} type={'button'} value={item.value} id={item.id}
-                                       className={item.isSelected ? s.select : null}
+                                       className={this.state.isSelected.id === item.id ? s.select : null}
                                        disabled={true}
                                 />
                             )}
@@ -46,10 +49,10 @@ class AttributesMin extends React.Component {
                         </div>
 
                         <div className={s.colors}>
-                            {this.state.attributes.map(item =>
+                            {this.props.attributes.items.map(item =>
                                 <input key={item.id} type={'button'} value={item.value} id={item.id}
                                        style={{background: item.displayValue}}
-                                       className={ item.isSelected ? s.selectColor : null }/>
+                                       className={this.state.isSelected.id === item.id ? s.selectColor : null}/>
                             )}
                         </div>
 
@@ -63,8 +66,5 @@ class AttributesMin extends React.Component {
     }
 }
 
-
-    export
-    default
-    AttributesMin;
+export default AttributesMin;
 

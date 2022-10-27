@@ -6,91 +6,96 @@ import {decreaseQuantity, increaseQuantity} from "../../redux/cartReducer";
 import SliderImage from "./SliderImage/SliderImage";
 import {NavLink} from "react-router-dom";
 import Attributes from "../common/Attributes/Attributes";
+import {calculatePrice, findPrice} from "../../redux/funtions";
 
 
 export class Cart extends React.Component {
 
-    totalPrice = () => {
-
-        let tax = 0.21
-        let orders = this.props.orders;
-        let i = orders[0].prices.findIndex((el) => el.currency.symbol === this.props.currentCurrency)
-
-        let sum = orders.reduce((acc, item) => acc + item.quantity * item.prices[i].amount, 0).toFixed(2)
-        let taxAmount = (sum * tax).toFixed(2)
-
-        return { total: sum, tax: taxAmount }
+    state = {
+        total: 0,
+        taxAmount: 0
     }
 
+    componentDidMount() {
+        if (this.props.orders.length !== 0) {
+            this.setState({
+                total: calculatePrice(this.props.orders, this.props.currentCurrency).total,
+                taxAmount: calculatePrice(this.props.orders, this.props.currentCurrency).tax
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.currentCurrency !== this.props.currentCurrency || prevProps.numberOrders !== this.props.numberOrders) {
+            this.setState({
+                total: calculatePrice(this.props.orders, this.props.currentCurrency).total,
+                taxAmount: calculatePrice(this.props.orders, this.props.currentCurrency).tax
+            })
+        }
+    }
+
+
     render() {
-        console.log(this.props)
         return (
             <div className={s.cartPage}>
                 <h1>CART</h1>
 
-                { this.props.orders.map( (order, key, index) =>
-                    <div key={key} className={s.cartProduct}>
+                {this.props.orders.map((order, key, index) =>
+                    <div key={key} className={s.order}>
 
-                        <div className={s.cartProductInfo}>
+                        <div className={s.info}>
                             <NavLink to={'/pdp/' + order.id}>
-                                <h3>{order.name}</h3>
+                                <h2>{order.name}</h2>
                             </NavLink>
+                            <h2 className={s.brand}>{order.brand}</h2>
 
-                            <h3 className={s.brand}>{order.brand}</h3>
-
-
-                            <div className={s.priceBlock}>
+                            <div className={s.price}>
                                 <p>
                                     {this.props.currentCurrency + ' '}
-                                    {order.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
+                                    {findPrice(order.prices, this.props.currentCurrency)}
                                 </p>
                             </div>
 
-                            { order.attributes.map(attributes =>
-                                <Attributes key={attributes.name} attributes={attributes} options={order.options}
-                                               isDisabled={true}/>
-                            ) }
-
+                            {order.attributes.map(attributes =>
+                                <Attributes key={attributes.name} attributes={attributes}
+                                            options={order.options} isDisabled={true}/>
+                            )}
 
                         </div>
 
-                        <div className={s.cartProductPhoto}>
-
-                            <div className={s.selectAmount}>
+                        <div className={s.orderPhoto}>
+                            <div className={s.changeAmount}>
                                 <input type={'button'} value={'+'} onClick={() => this.props.increaseQuantity(key)}/>
                                 <input type={'button'} className={s.label} value={order.quantity}/>
-                                <input type={'button'} value={'-'} onClick={() => this.props.decreaseQuantity(key, index)}/>
+                                <input type={'button'} value={'-'}
+                                       onClick={() => this.props.decreaseQuantity(key, index)}/>
                             </div>
 
-
-                                <div className={s.photos}>
-                                    <SliderImage key={key} images={order.gallery}/>
-                                </div>
-
-
-
+                            <div className={s.slider}>
+                                <SliderImage key={key} gallery={order.gallery}/>
+                            </div>
                         </div>
 
                     </div>
                 )}
 
-                <div className={s.total}>
+                <div className={s.totalPrice}>
                     <div>
-                        <h5>Tax 21%:</h5>
-                        <h5>Quantity:</h5>
-                        <h5 style={{fontWeight: 500}}>Total:</h5>
+                        <h2>Tax 21%:</h2>
+                        <h2>Quantity:</h2>
+                        <h2 style={{fontWeight: 500}}>Total:</h2>
                     </div>
                     {this.props.orders.length === 0
                         ? null
                         : <div className={s.sum}>
-                            <h5>{this.props.currentCurrency} {this.totalPrice().tax}</h5>
-                            <h5>{this.props.numberOrders} </h5>
-                            <h5>{this.props.currentCurrency} {this.totalPrice().total} </h5>
+                            <h2>{this.props.currentCurrency} {this.state.taxAmount}</h2>
+                            <h2>{this.props.numberOrders} </h2>
+                            <h2>{this.props.currentCurrency} {this.state.total} </h2>
                         </div>
                     }
-
                 </div>
-                <button>order</button>
+
+                <button>Order</button>
 
             </div>
         )
@@ -99,7 +104,7 @@ export class Cart extends React.Component {
 
 
 let mapStateToProps = (state) => {
-    return{
+    return {
         currentCurrency: state.header.currentCurrency,
         orders: state.cart.orders,
         numberOrders: state.cart.numberOrders
@@ -108,5 +113,5 @@ let mapStateToProps = (state) => {
 
 
 export default compose(
-    connect (mapStateToProps, {increaseQuantity, decreaseQuantity}))
+    connect(mapStateToProps, {increaseQuantity, decreaseQuantity}))
 (Cart);
