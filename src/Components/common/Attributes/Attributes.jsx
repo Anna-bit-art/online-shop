@@ -1,34 +1,30 @@
 import s from "./Attributes.module.css";
 import React from "react";
-import {compareArray, selectAttribute} from "../../../redux/funtions";
 
 
 class Attributes extends React.Component {
     state = {
-        isSelected: this.props.attributes.items[0]
+        isDisabled: this.props.isDisabled,
+        attributes: this.props.attributes.items
     }
 
     componentDidMount() {
-        if (this.props.isDisabled) {
-            this.setState({
-                isSelected: this.props.attributes.items[selectAttribute(this.props.options, this.props.attributes)]
-            })
-        }
-    }
+        if (this.state.isDisabled) {
+            let options = this.props.options
+            let selectOption = options[options.findIndex((el) => el.name === this.props.attributes.name)] //нашла нужную опцию в массиве опций
+            let index = this.props.attributes.items.findIndex(item => item.id === selectOption.id) //нашла индекс такой же опции в аттрибутах
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.state)
-
-        if (compareArray(prevProps.options, this.props.options) === false) {
             this.setState({
-                isSelected: this.props.attributes.items[selectAttribute(this.props.options, this.props.attributes)],
+                attributes: this.state.attributes.map((item, i) => (i === index ? {...item, isSelected: true} : item))
             })
         }
     }
 
     chooseOption = (i) => {
         this.setState({
-            isSelected: this.props.attributes.items[i]
+            attributes: this.state.attributes.map((item, index) => (index === i)
+                ? {...item, isSelected: true}
+                : {...item, isSelected: false})
         })
         this.makeOption(this.props.attributes.items[i].id)
     }
@@ -40,40 +36,44 @@ class Attributes extends React.Component {
 
 
     render() {
-        let data = Array.from(this.props.attributes.items)
         return (
             <>
                 {this.props.attributes.type === 'text'
                     ? <div className={s.sizeBox}>
 
-                        <h4>{this.props.attributes.name}:</h4>
+                        <div className={s.title}>
+                            <h4>{this.props.attributes.name}:</h4>
+                        </div>
 
                         <div className={s.size}>
-                            {data.map((item, index) =>
+                            {this.state.attributes.map((item, index) =>
                                 <input key={item.id} type={'button'} value={item.value} id={item.id}
                                        onClick={() => this.chooseOption(index)}
                                        disabled={this.props.isDisabled}
-                                       className={this.state.isSelected.id === item.id ? s.select : null}
-                                />
+                                       className={item.isSelected ? s.select : null}/>
                             )}
                         </div>
 
                     </div>
 
                     : <div className={s.colorBox}>
-
-                        <h4>{this.props.attributes.name}:</h4>
+                        <div className={s.title}>
+                            <h4>{this.props.attributes.name}:</h4>
+                        </div>
 
                         <div className={s.colors}>
-                            {data.map((item, index) =>
+                            {this.state.attributes.map((item, index) =>
                                 <input key={item.id} type={'button'} value={item.value}
                                        id={item.id} style={{background: item.displayValue}}
                                        onClick={() => this.chooseOption(index)}
                                        disabled={this.props.isDisabled}
-                                       className={this.state.isSelected.id === item.id ? s.selectColor : null}/>
+                                       className={item.isSelected ? s.selectColor : null}
+                                />
                             )}
                         </div>
+
                     </div>
+
                 }
             </>
         )

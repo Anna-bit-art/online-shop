@@ -15,7 +15,7 @@ class App extends React.Component {
             <div className={s.wrapper}>
                 <Header/>
                 <div className={s.wrapperContent}>
-                    {this.props.isCartOpen && <div className={s.over} onClick={this.props.checkCart}> </div>}
+                    {this.props.isCartOpen && <div className={s.over} onClick={this.props.checkCart}></div>}
                     <Routes>
                         <Route path='/category/:categoryId' element={<CategoryPage/>}/>
                         <Route path='/pdp/:productId' element={<PDP/>}/>
