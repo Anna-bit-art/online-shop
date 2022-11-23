@@ -2,19 +2,15 @@ import s from "./Actions.module.css"
 import React from "react";
 import {connect} from "react-redux";
 import cart from "../../../img/cart.png";
+import vector from "../../../img/Vector.png"
 import {checkCart, decreaseQuantity, increaseQuantity} from "../../../redux/cartReducer";
-import {CartOverflow} from "../../CartOverflow/CartOverflow";
+import {CartOverlay} from "../../CartOverlay/CartOverlay";
 import {compose} from "redux";
-import {getCurrencies, getCurrentCurrency} from "../../../redux/headerReducer";
+import {getCurrentCurrency} from "../../../redux/currencyReducer";
 import {requestProducts} from "../../../redux/categoryReducer";
 
 
 class Actions extends React.Component {
-    componentDidMount() {
-        this.props.getCurrencies();
-        this.props.requestProducts('all')
-    }
-
     state = {
         isCurrencyOpen: false
     }
@@ -31,24 +27,25 @@ class Actions extends React.Component {
     render() {
         return (
             <>
-                <div className={s.items}>
-                    <div> </div>
-                    <div> </div>
-                    <div>
-                        <label onClick={this.openListCurrency}>{this.props.currentCurrency} ></label>
+                <div className={s.actions}>
+                    <div style={{width: 38}}>
+                        <div onClick={this.openListCurrency}>
+                            <label>{this.props.currentCurrency}</label>
+                            <img alt={'cart'} src={vector} className={`${s.vector} ${this.state.isCurrencyOpen && s.vectorRotate}`}/>
+                        </div>
+
                         {this.state.isCurrencyOpen &&
                         <div className={s.currenciesList}>
                             {this.props.currencies.map((currency, index) =>
                                 <input type={'button'} key={currency.label} onClick={() => this.changePrice(index)}
                                        value={currency.symbol + ' ' + currency.label}/>
                             )}
-
                         </div>
                         }
                     </div>
 
                     <div onClick={this.props.checkCart}>
-                        <img alt={'cart'} src={cart}/>
+                        <img alt={'cart'} src={cart} className={s.cart}/>
                         {this.props.numberOrders > 0 && <div className={s.numberOrders}>{this.props.numberOrders}</div>}
                     </div>
                 </div>
@@ -56,10 +53,11 @@ class Actions extends React.Component {
 
 
                 {this.props.isCartOpen && (
-                    <CartOverflow props={this.props} checkCart={this.props.checkCart}
-                                  currentCurrency={this.props.currentCurrency}
-                                  increaseQuantity={this.props.increaseQuantity}
-                                  decreaseQuantity={this.props.decreaseQuantity}
+                    <CartOverlay orders={this.props.orders} checkCart={this.props.checkCart}
+                                 numberOrders={this.props.numberOrders}
+                                 currentCurrency={this.props.currentCurrency}
+                                 increaseQuantity={this.props.increaseQuantity}
+                                 decreaseQuantity={this.props.decreaseQuantity}
                     />
                 )}
             </>
@@ -69,11 +67,11 @@ class Actions extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        currencies: state.header.currencies,
-        currentCurrency: state.header.currentCurrency,
+        currencies: state.currency.currencies,
+        currentCurrency: state.currency.currentCurrency,
         numberOrders: state.cart.numberOrders,
         isCartOpen: state.cart.isCartOpen,
-        props: state.cart
+        orders: state.cart.orders
     }
 }
 
@@ -82,7 +80,6 @@ export default compose(
         checkCart,
         increaseQuantity,
         decreaseQuantity,
-        getCurrencies,
         getCurrentCurrency,
         requestProducts
     }))
