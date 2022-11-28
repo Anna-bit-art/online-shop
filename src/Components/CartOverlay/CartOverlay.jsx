@@ -49,7 +49,7 @@ class CartOverlay extends React.Component {
                                     <h2>{order.brand}</h2>
 
                                     <div className={s.price}>
-                                        <p style={{fontWeight: 500}}>
+                                        <p>
                                             {this.props.currentCurrency + ' '}
                                             {findPrice(order.prices, this.props.currentCurrency)}
                                         </p>

@@ -58,6 +58,10 @@
     width: 100%;
 }
 
+.cartOverflow .price p{
+    font-weight: 500;
+}
+
 /*********photo***************************/
 .cartOverflow .photo {
     display: flex;

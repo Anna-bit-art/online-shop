@@ -72,13 +72,13 @@ class ProductPage extends React.Component {
                     <div className={s.info}>
                         <div className={!product.inStock ? a.outOfStock : null}>
                             <img className={s.productPhoto} alt={'product img'} src={this.state.mainImage}/>
-                            {!product.inStock && <span style={{fontSize: 30}}>OUT OF STOCK</span>}
+                            {!product.inStock && <span>OUT OF STOCK</span>}
                         </div>
 
                         <div className={s.name}>
                             <div>
                                 <h2>{product.name}</h2>
-                                <h2 style={{fontWeight: 400, marginBottom: 19}}>{product.brand}</h2>
+                                <h2 className={s.brand}>{product.brand}</h2>
                             </div>
 
                             {product.attributes.map(attributes =>
@@ -88,7 +88,7 @@ class ProductPage extends React.Component {
                             )}
 
                             <div className={s.price}>
-                                <h4 style={{marginBottom: 20}}>PRICE:</h4>
+                                <h4>PRICE:</h4>
                                 <p>
                                     {this.props.currentCurrency}
                                     {this.state.price}

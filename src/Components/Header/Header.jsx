@@ -17,7 +17,7 @@ class Header extends React.Component {
     render() {
         return (
             <header>
-                <div style={{marginTop:28}} >
+                <div className={s.navbar}>
                     <Navbar/>
                 </div>
 
@@ -25,7 +25,7 @@ class Header extends React.Component {
                     <img alt={'logo'} src={logo}/>
                 </div>
 
-                <div style={{marginTop:23}}>
+                <div className={s.actions}>
                     <Actions/>
                 </div>
             </header>

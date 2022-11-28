@@ -28,7 +28,7 @@ class Actions extends React.Component {
         return (
             <>
                 <div className={s.actions}>
-                    <div style={{width: 38}}>
+                    <div className={s.currencyLabel}>
                         <div onClick={this.openListCurrency}>
                             <label>{this.props.currentCurrency}</label>
                             <img alt={'cart'} src={vector} className={`${s.vector} ${this.state.isCurrencyOpen && s.vectorRotate}`}/>

@@ -68,9 +68,20 @@
     padding: 2px;
     box-sizing: border-box;
 }
+.productPage .info span {
+    font-size: 30px;
+}
 
+.productPage .info .name .brand {
+    font-weight: 400;
+    margin-bottom: 19px;
+}
 .productPage .price {
     margin: 36px 0 30px 0;
+}
+
+.productPage .price h4 {
+    margin-bottom: 20px
 }
 
 .productPage .price p {

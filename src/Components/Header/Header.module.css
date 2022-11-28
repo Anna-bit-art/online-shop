@@ -11,6 +11,13 @@ header div {
     flex: 1 auto;
     float: right;
 }
+header .navbar{
+    margin-top: 28px;
+}
+
+header .actions{
+    margin-top: 23px;
+}
 
 .logo {
     width: 60%;

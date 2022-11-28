@@ -1,7 +1,8 @@
 import React from "react";
 import s from "./SliderImage.module.css"
 
-export class SliderImage extends React.Component {
+
+class SliderImage extends React.Component {
 
     state = {
         counter: 0

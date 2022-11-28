@@ -4,6 +4,7 @@ import {compareArray, selectAttribute} from "../../../redux/funtions";
 
 
 class Attributes extends React.Component {
+
     state = {
         isSelected: this.props.attributes.items[0]
     }

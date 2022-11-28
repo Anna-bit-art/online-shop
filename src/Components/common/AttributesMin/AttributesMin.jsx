@@ -28,7 +28,7 @@ class AttributesMin extends React.Component {
             <>
                 {this.props.attributes.type === 'text'
                     ? <div className={s.sizeBoxMin}>
-                        <div className={s.title}>
+                        <div>
                             <h4>{this.props.attributes.name}:</h4>
                         </div>
 
@@ -44,7 +44,7 @@ class AttributesMin extends React.Component {
 
 
                     : <div className={s.colorBoxMin}>
-                        <div className={s.title}>
+                        <div>
                             <h4>{this.props.attributes.name}:</h4>
                         </div>
 
