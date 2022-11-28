@@ -8,7 +8,7 @@ import {addProduct} from "../../redux/cartReducer";
 import cart from "../../img/cart.png";
 import Loader from "../common/Loader";
 import {requestProducts} from "../../redux/categoryReducer";
-import {withRouter} from "../../redux/funtions";
+import {findPrice, withRouter} from "../../redux/funtions";
 
 
 class CategoryPage extends React.Component {
@@ -45,7 +45,7 @@ class CategoryPage extends React.Component {
                                                 <h3>{product.name} {product.brand}</h3>
                                                 <p>
                                                     {this.props.currentCurrency + ' '}
-                                                    {product.prices.find((el) => el.currency.symbol === this.props.currentCurrency).amount}
+                                                    {findPrice(product.prices, this.props.currentCurrency)}
                                                 </p>
                                             </div>
                                         </NavLink>
