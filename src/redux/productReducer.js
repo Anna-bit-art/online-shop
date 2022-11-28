@@ -1,7 +1,6 @@
 import {GET_PRODUCT} from "../query/product";
 
 const SET_PRODUCT = 'product/SET_PRODUCT';
-const SET_PRICES = 'product/SET_PRICES';
 const TOGGLE_IS_FETCHING = 'product/TOGGLE_IS_FETCHING';
 
 
@@ -54,7 +53,6 @@ const productReducer = (state = initialState, action) => {
 }
 
 export const setProduct = (payload) => ({type: SET_PRODUCT, payload});
-export const setPrices = (currentCurrency) => ({type: SET_PRICES, currentCurrency});
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 

@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import cart from "../../../img/cart.png";
 import vector from "../../../img/Vector.png"
 import {checkCart, decreaseQuantity, increaseQuantity} from "../../../redux/cartReducer";
-import {CartOverlay} from "../../CartOverlay/CartOverlay";
 import {compose} from "redux";
 import {getCurrentCurrency} from "../../../redux/currencyReducer";
 import {requestProducts} from "../../../redux/categoryReducer";
+import CartOverlay from "../../CartOverlay/CartOverlay";
 
 
 class Actions extends React.Component {

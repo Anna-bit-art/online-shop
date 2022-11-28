@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./CartPage.module.css"
-import {compose} from "redux";
 import {connect} from "react-redux";
 import {decreaseQuantity, increaseQuantity} from "../../redux/cartReducer";
 import SliderImage from "./SliderImage/SliderImage";
@@ -9,7 +8,7 @@ import Attributes from "../common/Attributes/Attributes";
 import {calculatePrice, findPrice} from "../../redux/funtions";
 
 
-export class CartPage extends React.Component {
+class CartPage extends React.Component {
 
     state = {
         total: 0,
@@ -112,6 +111,5 @@ let mapStateToProps = (state) => {
 }
 
 
-export default compose(
-    connect(mapStateToProps, {increaseQuantity, decreaseQuantity}))
+export default connect(mapStateToProps, {increaseQuantity, decreaseQuantity})
 (CartPage);

@@ -17,8 +17,6 @@ class Attributes extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.state)
-
         if (compareArray(prevProps.options, this.props.options) === false) {
             this.setState({
                 isSelected: this.props.attributes.items[selectAttribute(this.props.options, this.props.attributes)],

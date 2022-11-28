@@ -5,10 +5,10 @@ import {connect} from "react-redux";
 import React from "react";
 import {NavLink} from "react-router-dom";
 import {addProduct} from "../../redux/cartReducer";
-import {withRouter} from "../../withRouter";
 import cart from "../../img/cart.png";
 import Loader from "../common/Loader";
 import {requestProducts} from "../../redux/categoryReducer";
+import {withRouter} from "../../redux/funtions";
 
 
 class CategoryPage extends React.Component {

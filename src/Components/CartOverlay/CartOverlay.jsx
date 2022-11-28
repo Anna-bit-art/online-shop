@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./CartOverlay.module.css"
-import {compose} from "redux";
 import {connect} from "react-redux";
 import {decreaseQuantity, increaseQuantity} from "../../redux/cartReducer";
 import {NavLink} from "react-router-dom";
@@ -8,8 +7,7 @@ import AttributesMin from "../common/AttributesMin/AttributesMin";
 import {calculatePrice, findPrice} from "../../redux/funtions";
 
 
-
-export class CartOverlay extends React.Component {
+class CartOverlay extends React.Component {
 
     state = {
         total: 0
@@ -105,14 +103,13 @@ export class CartOverlay extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        currentCurrency: state.header.currentCurrency,
+        currentCurrency: state.currency.currentCurrency,
         orders: state.cart.orders,
         numberOrders: state.cart.numberOrders
     }
 }
 
-export default compose(
-    connect (mapStateToProps, { increaseQuantity, decreaseQuantity }))
+export default connect (mapStateToProps, { increaseQuantity, decreaseQuantity })
 (CartOverlay)
 
 

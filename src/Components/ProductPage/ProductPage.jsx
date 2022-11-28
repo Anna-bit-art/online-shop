@@ -1,5 +1,4 @@
 import React from "react";
-import {withRouter} from "../../withRouter";
 import {compose} from "redux";
 import {requestProductId} from "../../redux/productReducer";
 import {connect} from "react-redux";
@@ -10,7 +9,7 @@ import Attributes from "../common/Attributes/Attributes";
 import {Interweave} from 'interweave';
 import {transformText} from "./interweaveStyle";
 import Loader from "../common/Loader";
-import {findPrice} from "../../redux/funtions";
+import {findPrice, withRouter} from "../../redux/funtions";
 
 
 class ProductPage extends React.Component {

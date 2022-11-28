@@ -2,7 +2,7 @@ import {GET_CATEGORIES, GET_CATEGORY_PRODUCTS} from "../query/categories";
 
 const SET_PRODUCTS = 'category/SET_PRODUCTS';
 const SET_CURRENT_CATEGORY = 'category/SET_CURRENT_CATEGORY';
-const SET_CATEGORIES = 'category/SET_ALL_PRODUCTS';
+const SET_CATEGORIES = 'category/SET_CATEGORIES';
 const TOGGLE_IS_FETCHING = 'category/TOGGLE_IS_FETCHING';
 
 
@@ -58,8 +58,9 @@ export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFe
 export const getCategories = () => async (dispatch) => {
     let categories = await GET_CATEGORIES();
     dispatch(setCategories(categories));
-    let currentCategory = categories[0].name
-    dispatch(setCurrentCategory(currentCategory))
+    //TODO: сделать запрос на все продукты при загрузке CategoryPage
+    // let currentCategory = categories[0].name
+    // dispatch(setCurrentCategory(currentCategory))
 }
 
 export const setCategory = (category) => async (dispatch) => {
