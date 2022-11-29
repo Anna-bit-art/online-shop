@@ -40,6 +40,7 @@ class Attributes extends React.Component {
 
     render() {
         let data = Array.from(this.props.attributes.items)
+        console.log(this.props)
         return (
             <>
                 {this.props.attributes.type === 'text'
@@ -66,10 +67,13 @@ class Attributes extends React.Component {
                         <div className={s.colors}>
                             {data.map((item, index) =>
                                 <input key={item.id} type={'button'} value={item.value}
-                                       id={item.id} style={{background: item.displayValue}}
+                                       id={item.id}
+                                       style={{background: item.displayValue}}
                                        onClick={() => this.chooseOption(index)}
                                        disabled={this.props.isDisabled}
-                                       className={this.state.isSelected.id === item.id ? s.selectColor : null}/>
+                                       className= {`${item.id === 'White' ? s.white : null}
+                                                    ${this.state.isSelected.id === item.id ? s.selectColor : null}`}
+                                />
                             )}
                         </div>
                     </div>

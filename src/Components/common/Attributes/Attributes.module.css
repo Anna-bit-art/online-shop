@@ -93,7 +93,10 @@
     outline: 1px solid #fff;
     outline-offset: 1px;
     border: 1px solid transparent;
-    box-shadow: 0 0 4px 1px rgba(230, 230, 230, 1);
+}
+
+.colorBox .colors input[type="button" i].white {
+    border: 1px solid #000000;
 }
 
 .colorBox .colors input[value] {
@@ -102,5 +105,10 @@
 
 .colorBox .colors input[type="button" i].selectColor {
     outline: 1px solid rgba(94, 206, 123, 1);
+}
+
+.colorBox .colors input[type="button" i].white.selectColor {
+    outline: 1px solid rgba(94, 206, 123, 1);
+    /*border: 1px solid transparent;*/
 }
 
