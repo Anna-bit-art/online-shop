@@ -12,18 +12,21 @@ import CartPage from "./Components/CartPage/CartPage";
 class App extends React.Component {
     render() {
         return (
-            <div className={s.wrapper}>
-                <Header/>
-                <div className={s.wrapperContent}>
-                    {this.props.isCartOpen && <div className={s.over} onClick={this.props.checkCart}></div>}
-                    <Routes>
-                        <Route path='/' element={<CategoryPage/>} />
-                        <Route path='/category/:categoryId' element={<CategoryPage/>}/>
-                        <Route path='/pdp/:productId' element={<ProductPage/>}/>
-                        <Route path='/cart' element={<CartPage/>}/>
-                    </Routes>
-                </div>
-            </div>
+            <>
+                {this.props.isCartOpen && <div className={s.over} onClick={this.props.checkCart}></div>}
+                    <div className={s.wrapper}>
+                        <Header/>
+                        <div className={s.wrapperContent}>
+                            <Routes>
+                                <Route path='/' element={<CategoryPage/>} />
+                                <Route path='/category/:categoryId' element={<CategoryPage/>}/>
+                                <Route path='/pdp/:productId' element={<ProductPage/>}/>
+                                <Route path='/cart' element={<CartPage/>}/>
+                            </Routes>
+                        </div>
+                    </div>
+            </>
+
         );
     }
 }
