@@ -107,8 +107,8 @@
     outline: 1px solid rgba(94, 206, 123, 1);
 }
 
-.colorBox .colors input[type="button" i].white.selectColor {
-    outline: 1px solid rgba(94, 206, 123, 1);
-    /*border: 1px solid transparent;*/
-}
+/*.colorBox .colors input[type="button" i].white.selectColor {*/
+/*    outline: 1px solid rgba(94, 206, 123, 1);*/
+/*    border: 1px solid transparent;*/
+/*}*/
 

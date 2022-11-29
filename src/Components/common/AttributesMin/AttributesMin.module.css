@@ -93,8 +93,11 @@
     outline: 1px solid #fff;
     outline-offset: 1px;
     border: 1px solid transparent;
-    box-shadow:   0 0 4px 1px rgba(230,230,230,1);
     cursor: pointer;
+}
+
+.colorBoxMin .colors input[type="button" i].white {
+    border: 1px solid #000000;
 }
 
 .colorBoxMin input[type="button" i].selectColor{

@@ -52,7 +52,9 @@ class AttributesMin extends React.Component {
                             {this.props.attributes.items.map(item =>
                                 <input key={item.id} type={'button'} value={item.value} id={item.id}
                                        style={{background: item.displayValue}}
-                                       className={this.state.isSelected.id === item.id ? s.selectColor : null}/>
+                                       className= {`${item.id === 'White' ? s.white : null}
+                                                    ${this.state.isSelected.id === item.id ? s.selectColor : null}`}
+                                />
                             )}
                         </div>
                     </div>
