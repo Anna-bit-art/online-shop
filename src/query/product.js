@@ -33,41 +33,4 @@ export const GET_PRODUCT = (id) => {
         .then(result => result.data.product);
 }
 
-export const GET_ATTRIBUTES_PRODUCT = (id) => {
-    return client
-        .query({
-            query: gql`
-      query GET_ATTRIBUTES_PRODUCT($id: String!) {
-        product(id:$id){
-         attributes{
-            id, name, type, items{
-              displayValue, value, id
-            }
-          } 
-      }
-    }
-    `,
-            variables: { id },
-        })
-        .then(result => result.data.product);
-}
 
-
-export const GET_PRICE_PRODUCT = (id) => {
-    return client
-        .query({
-            query: gql`
-      query GET_ATTRIBUTES_PRODUCT($id: String!) {
-        product(id:$id){
-           prices{
-             amount, currency{
-                label, symbol
-             }
-           }
-  }
-      }
-    `,
-            variables: { id },
-        })
-        .then(result => result.data.product.attributes);
-}

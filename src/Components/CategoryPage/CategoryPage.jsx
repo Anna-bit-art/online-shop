@@ -7,19 +7,19 @@ import {NavLink} from "react-router-dom";
 import {addProduct} from "../../redux/cartReducer";
 import cart from "../../img/cart.png";
 import Loader from "../common/Loader";
-import {requestProducts} from "../../redux/categoryReducer";
 import {findPrice, withRouter} from "../../redux/funtions";
+import {getCategoryProducts} from "../../redux/categoryReducer";
 
 
 class CategoryPage extends React.Component {
 
     componentDidMount() {
-        this.props.requestProducts(this.props.currentCategory)
+        this.props.getCategoryProducts(this.props.currentCategory)
     }
 
     componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
         if(prevProps.currentCategory !== this.props.currentCategory) {
-            this.props.requestProducts(this.props.currentCategory)
+            this.props.getCategoryProducts(this.props.currentCategory)
         }
     }
 
@@ -77,7 +77,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {addProduct, requestProducts}),
+    connect(mapStateToProps, {addProduct, getCategoryProducts}),
     withRouter)
 (CategoryPage);
 

@@ -72,7 +72,7 @@ class CartOverlay extends React.Component {
                                                onClick={() => this.props.decreaseQuantity(key, order.id)}/>
                                     </div>
 
-                                    <img alt={'orderImg'} src={order.gallery[0]}/>
+                                    <img alt={'orderImg'} src={order.gallery.find(e => e !== undefined)}/>
 
                                 </div>
 

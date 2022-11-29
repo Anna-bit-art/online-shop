@@ -58,16 +58,15 @@ export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFe
 export const getCategories = () => async (dispatch) => {
     let categories = await GET_CATEGORIES();
     dispatch(setCategories(categories));
-    //TODO: сделать запрос на все продукты при загрузке CategoryPage
-    // let currentCategory = categories[0].name
-    // dispatch(setCurrentCategory(currentCategory))
+    let currentCurrency = categories.find(e => e !== undefined).name;
+    dispatch(setCurrentCategory(currentCurrency));
 }
 
 export const setCategory = (category) => async (dispatch) => {
     dispatch(setCurrentCategory(category));
 }
 
-export const requestProducts = (currentCategory) => async (dispatch) => {
+export const getCategoryProducts = (currentCategory) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     let products = await GET_CATEGORY_PRODUCTS(currentCategory)
     dispatch(setProducts(products));

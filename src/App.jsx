@@ -18,7 +18,7 @@ class App extends React.Component {
                         <Header/>
                         <div className={s.wrapperContent}>
                             <Routes>
-                                <Route path='/' element={<CategoryPage/>} />
+                                <Route path='/' element={<CategoryPage/>}/>
                                 <Route path='/category/:categoryId' element={<CategoryPage/>}/>
                                 <Route path='/pdp/:productId' element={<ProductPage/>}/>
                                 <Route path='/cart' element={<CartPage/>}/>

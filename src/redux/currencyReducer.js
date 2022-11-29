@@ -6,7 +6,7 @@ const SET_CURRENT_CURRENCY = 'currency/SET_CURRENT_CURRENCY';
 
 let initialState = {
     currencies: [],
-    currentCurrency: '$'
+    currentCurrency: ''
 }
 
 const currencyReducer = (state = initialState, action) => {
@@ -18,9 +18,7 @@ const currencyReducer = (state = initialState, action) => {
         case SET_CURRENT_CURRENCY: {
             return {
                 ...state,
-                currentCurrency: state.currencies[action.index].symbol === '$'
-                    ? '$'
-                    : state.currencies[action.index].symbol
+                currentCurrency: state.currencies.find(el => el.symbol === action.symbol).symbol
             }
         }
 
@@ -29,17 +27,19 @@ const currencyReducer = (state = initialState, action) => {
 
 }
 
-
 export const setCurrencies = (currencies) => ({type: SET_CURRENCIES, currencies});
-export const setCurrentCurrency = (index) => ({type: SET_CURRENT_CURRENCY, index});
+export const setCurrentCurrency = (symbol) => ({type: SET_CURRENT_CURRENCY, symbol});
+
 
 export const getCurrencies = () => async (dispatch) => {
     let currencies = await GET_CURRENCIES();
     dispatch(setCurrencies(currencies));
+    let symbol = currencies.find(el => el.symbol !== undefined).symbol;
+    dispatch(setCurrentCurrency(symbol));
 }
 
-export const getCurrentCurrency = (index) => (dispatch) => {
-    dispatch(setCurrentCurrency(index));
+export const getCurrentCurrency = (symbol) => (dispatch) => {
+    dispatch(setCurrentCurrency(symbol));
 }
 
 

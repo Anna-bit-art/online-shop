@@ -81,3 +81,4 @@ class Attributes extends React.Component {
 
 export default Attributes;
 
+// TODO: первоначальное значение state должно быть пустым

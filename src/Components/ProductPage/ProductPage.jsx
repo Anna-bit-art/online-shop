@@ -132,3 +132,4 @@ export default compose(
     withRouter
 )(ProductPage);
 
+//TODO: проблема с первоначальным значением state и reload

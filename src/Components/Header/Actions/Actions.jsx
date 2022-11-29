@@ -6,7 +6,6 @@ import vector from "../../../img/Vector.png"
 import {checkCart, decreaseQuantity, increaseQuantity} from "../../../redux/cartReducer";
 import {compose} from "redux";
 import {getCurrentCurrency} from "../../../redux/currencyReducer";
-import {requestProducts} from "../../../redux/categoryReducer";
 import CartOverlay from "../../CartOverlay/CartOverlay";
 
 
@@ -19,8 +18,8 @@ class Actions extends React.Component {
         this.setState({isCurrencyOpen: !this.state.isCurrencyOpen})
     }
 
-    changePrice = (index) => {
-        this.props.getCurrentCurrency(index)
+    changePrice = (symbol) => {
+        this.props.getCurrentCurrency(symbol)
         this.openListCurrency();
     }
 
@@ -36,8 +35,8 @@ class Actions extends React.Component {
 
                         {this.state.isCurrencyOpen &&
                         <div className={s.currenciesList}>
-                            {this.props.currencies.map((currency, index) =>
-                                <input type={'button'} key={currency.label} onClick={() => this.changePrice(index)}
+                            {this.props.currencies.map((currency) =>
+                                <input type={'button'} key={currency.label} onClick={() => this.changePrice(currency.symbol)}
                                        value={currency.symbol + ' ' + currency.label}/>
                             )}
                         </div>
@@ -80,8 +79,7 @@ export default compose(
         checkCart,
         increaseQuantity,
         decreaseQuantity,
-        getCurrentCurrency,
-        requestProducts
+        getCurrentCurrency
     }))
 (Actions)
 
