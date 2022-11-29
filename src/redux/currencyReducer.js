@@ -3,10 +3,13 @@ import {GET_CURRENCIES} from "../query/currencies";
 
 const SET_CURRENCIES = 'currency/SET_CURRENCIES';
 const SET_CURRENT_CURRENCY = 'currency/SET_CURRENT_CURRENCY';
+let IS_CURRENCY_OPEN = 'IS_CURRENCY_OPEN';
+
 
 let initialState = {
     currencies: [],
-    currentCurrency: ''
+    currentCurrency: '',
+    isCurrencyOpen: false
 }
 
 const currencyReducer = (state = initialState, action) => {
@@ -22,6 +25,13 @@ const currencyReducer = (state = initialState, action) => {
             }
         }
 
+        case IS_CURRENCY_OPEN: {
+            return {
+                ...state,
+                isCurrencyOpen: !state.isCurrencyOpen
+            }
+        }
+
         default: return state;
     }
 
@@ -29,6 +39,8 @@ const currencyReducer = (state = initialState, action) => {
 
 export const setCurrencies = (currencies) => ({type: SET_CURRENCIES, currencies});
 export const setCurrentCurrency = (symbol) => ({type: SET_CURRENT_CURRENCY, symbol});
+export const checkCurrencyList = () => ({type: IS_CURRENCY_OPEN})
+
 
 
 export const getCurrencies = () => async (dispatch) => {

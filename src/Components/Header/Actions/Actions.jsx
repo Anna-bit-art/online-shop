@@ -5,51 +5,38 @@ import cart from "../../../img/cart.png";
 import vector from "../../../img/Vector.png"
 import {checkCart, decreaseQuantity, increaseQuantity} from "../../../redux/cartReducer";
 import {compose} from "redux";
-import {getCurrentCurrency} from "../../../redux/currencyReducer";
+import {checkCurrencyList, getCurrentCurrency} from "../../../redux/currencyReducer";
 import CartOverlay from "../../CartOverlay/CartOverlay";
+import CurrencyList from "./CurrencyList/CurrencyList";
 
 
 class Actions extends React.Component {
-    state = {
-        isCurrencyOpen: false
-    }
-
-    openListCurrency = () => {
-        this.setState({isCurrencyOpen: !this.state.isCurrencyOpen})
-    }
-
-    changePrice = (symbol) => {
-        this.props.getCurrentCurrency(symbol)
-        this.openListCurrency();
-    }
 
     render() {
         return (
             <>
                 <div className={s.actions}>
                     <div className={s.currencyLabel}>
-                        <div onClick={this.openListCurrency}>
+                        <div onClick={this.props.checkCurrencyList}>
                             <label>{this.props.currentCurrency}</label>
-                            <img alt={'cart'} src={vector} className={`${s.vector} ${this.state.isCurrencyOpen && s.vectorRotate}`}/>
+                            <img alt={'cart'} src={vector} className={`${s.vector} ${this.props.isCurrencyOpen && s.vectorRotate}`}/>
                         </div>
 
-                        {this.state.isCurrencyOpen &&
-                        <div className={s.currenciesList}>
-                            {this.props.currencies.map((currency) =>
-                                <input type={'button'} key={currency.label} onClick={() => this.changePrice(currency.symbol)}
-                                       value={currency.symbol + ' ' + currency.label}/>
-                            )}
-                        </div>
+                        {this.props.isCurrencyOpen &&
+                            <CurrencyList currencies={this.props.currencies}
+                                          changePrice={this.changePrice}
+                                          getCurrentCurrency={this.props.getCurrentCurrency}
+                                          checkCurrencyList={this.props.checkCurrencyList}
+                            />
                         }
                     </div>
+
 
                     <div onClick={this.props.checkCart}>
                         <img alt={'cart'} src={cart} className={s.cart}/>
                         {this.props.numberOrders > 0 && <div className={s.numberOrders}>{this.props.numberOrders}</div>}
                     </div>
                 </div>
-
-
 
                 {this.props.isCartOpen && (
                     <CartOverlay orders={this.props.orders} checkCart={this.props.checkCart}
@@ -68,8 +55,9 @@ let mapStateToProps = (state) => {
     return {
         currencies: state.currency.currencies,
         currentCurrency: state.currency.currentCurrency,
-        numberOrders: state.cart.numberOrders,
+        isCurrencyOpen: state.currency.isCurrencyOpen,
         isCartOpen: state.cart.isCartOpen,
+        numberOrders: state.cart.numberOrders,
         orders: state.cart.orders
     }
 }
@@ -79,7 +67,8 @@ export default compose(
         checkCart,
         increaseQuantity,
         decreaseQuantity,
-        getCurrentCurrency
+        getCurrentCurrency,
+        checkCurrencyList
     }))
 (Actions)
 

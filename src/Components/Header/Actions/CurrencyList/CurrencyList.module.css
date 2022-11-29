@@ -1,0 +1,35 @@
+.currenciesList {
+    width: 114px;
+    height: auto;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 78px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 0;
+    box-sizing: border-box;
+    z-index: 1;
+    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+}
+
+.currenciesList input[type="button" i] {
+    display: flex;
+    width: 100%;
+    padding: 8px 0;
+    background: #ffffff;
+    cursor: pointer;
+    border: none;
+}
+
+.currenciesList input[value] {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 160%;
+    padding-left: 20px;
+}
+
+.currenciesList input[type="button" i]:hover {
+    background: #EEEEEE;
+    box-sizing: border-box;
+}
