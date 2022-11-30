@@ -17,16 +17,18 @@ class Header extends React.Component {
     render() {
         return (
             <header>
-                <div className={s.navbar}>
-                    <Navbar/>
-                </div>
-
                 <div className={s.logo}>
                     <img alt={'logo'} src={logo}/>
                 </div>
 
-                <div className={s.actions}>
-                    <Actions/>
+                <div className={s.header}>
+                    <div className={s.navbar}>
+                        <Navbar/>
+                    </div>
+
+                    <div className={s.actions}>
+                        <Actions/>
+                    </div>
                 </div>
             </header>
         )

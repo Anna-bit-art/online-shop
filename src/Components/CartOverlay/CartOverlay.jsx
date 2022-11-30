@@ -31,7 +31,7 @@ class CartOverlay extends React.Component {
 
     render() {
         return (
-                <div className={s.cartOverflow}>
+                <div className={s.cartOverlay}>
                     <p>My bag,
                         <span>
                             {this.props.numberOrders > 1

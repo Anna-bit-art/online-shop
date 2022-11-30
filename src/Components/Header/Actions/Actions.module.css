@@ -86,7 +86,7 @@
 .actions .numberOrders {
     position: absolute;
     top: 25px;
-    right: 88px;
+    right: -13px;
     z-index: 1;
     width: 20px;
     height: 20px;
