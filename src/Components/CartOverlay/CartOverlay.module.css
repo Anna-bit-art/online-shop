@@ -46,6 +46,7 @@
 /****cartProduct***************************/
 .cartOverlay .cartProduct{
     display: flex;
+    justify-content: space-between;
 }
 
 .cartOverlay .cartProduct h3 {
@@ -66,6 +67,8 @@
 .cartOverlay .photo {
     display: flex;
     gap: 8px;
+    justify-content: center;
+    align-items: center;
 }
 
 .cartOverlay .photo img {

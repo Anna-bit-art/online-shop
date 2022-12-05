@@ -6,6 +6,7 @@ export const selectAttribute = (options, attributes) => {
 }
 
 export const findPrice = (prices, currency) => {
+
     return prices[prices.findIndex((el) => el.currency.symbol === currency)].amount.toFixed(2);
 }
 

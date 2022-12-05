@@ -64,9 +64,10 @@
     'box';
     position: relative;
     height: 44px;
-    margin-top: 8px;
     width: 100%;
 
+    margin-top: 6px;
+    /*wrong value*/
 }
 
 .colorBoxMin h4 {

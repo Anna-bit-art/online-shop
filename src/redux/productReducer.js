@@ -56,7 +56,7 @@ export const setProduct = (payload) => ({type: SET_PRODUCT, payload});
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 
-export const requestProductId = (productID) => async (dispatch) => {
+export const getProduct = (productID) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     let payload = await GET_PRODUCT(productID);
     dispatch(setProduct(payload));

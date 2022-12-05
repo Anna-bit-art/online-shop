@@ -40,7 +40,6 @@ class Attributes extends React.Component {
 
     render() {
         let data = Array.from(this.props.attributes.items)
-        console.log(this.props)
         return (
             <>
                 {this.props.attributes.type === 'text'

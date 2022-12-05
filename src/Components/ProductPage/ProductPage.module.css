@@ -68,7 +68,8 @@
     padding: 2px;
     box-sizing: border-box;
 }
-.productPage .info span {
+
+.productPage .outOfStock span {
     font-size: 30px;
 }
 

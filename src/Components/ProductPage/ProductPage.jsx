@@ -1,15 +1,16 @@
 import React from "react";
 import {compose} from "redux";
-import {requestProductId} from "../../redux/productReducer";
+import {getProduct} from "../../redux/productReducer";
 import {connect} from "react-redux";
 import s from "./ProductPage.module.css";
 import a from "./../../App.module.css"
 import {addProduct} from "../../redux/cartReducer";
 import Attributes from "../common/Attributes/Attributes";
-import {Interweave} from 'interweave';
-import {transformText} from "./interweaveStyle";
 import Loader from "../common/Loader";
 import {findPrice, withRouter} from "../../redux/funtions";
+import {Interweave} from 'interweave';
+import {transformText} from "./interweaveStyle";
+
 
 
 class ProductPage extends React.Component {
@@ -22,7 +23,7 @@ class ProductPage extends React.Component {
 
     componentDidMount() {
         let productId = this.props.router.params.productId;
-        this.props.requestProductId(productId)
+        this.props.getProduct(productId);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -33,8 +34,9 @@ class ProductPage extends React.Component {
             })
         }
         if (prevProps.currentCurrency !== this.props.currentCurrency) {
-            this.setState({price: findPrice(this.props.product.prices, this.props.currentCurrency)})
+            this.setState({price: this.props.isFetching ? null : findPrice(this.props.product.prices, this.props.currentCurrency)})
         }
+
     }
 
     changePhoto = (i) => {
@@ -105,6 +107,7 @@ class ProductPage extends React.Component {
                             </button>
 
                             <div className={s.description}>
+                                {/*{product.description}*/}
                                 <Interweave content={product.description} transform={transformText}/>
                             </div>
 
@@ -128,7 +131,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {requestProductId, addProduct}),
+    connect(mapStateToProps, {getProduct, addProduct, findPrice}),
     withRouter
 )(ProductPage);
 

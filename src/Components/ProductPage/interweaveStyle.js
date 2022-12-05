@@ -7,8 +7,8 @@ export const transformText = (node: HTMLElement, children: Node[]):React.ReactNo
     }
     if (node.tagName.toLowerCase() === "h1") {
         return  <h1 style={{fontSize: 26, fontWeight: 600, marginTop: 8, marginBottom: 5}}>
-                    {children}
-                </h1>;
+            {children}
+        </h1>;
     }
     if (node.tagName.toLowerCase() === "h3") {
         return  <h3 style={{fontSize: 22, fontWeight: 600, marginTop: 8, marginBottom: 5}}>
