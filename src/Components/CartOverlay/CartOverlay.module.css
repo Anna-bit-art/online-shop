@@ -29,16 +29,21 @@
     font-weight: 300;
     font-size: 16px;
     line-height: 160%;
+    max-width: 130px;
 }
 /*********************orders***************************/
 .cartOverlay .orders {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
     position: relative;
     max-height: 600px;
     overflow: auto;
-    padding: 2px;
+    padding: 0;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 .cartOverlay .orders p{
     margin: 8px 0 0 0;
@@ -47,8 +52,16 @@
 .cartOverlay .cartProduct{
     display: flex;
     justify-content: space-between;
+    height: content-box;
 }
 
+.cartOverlay .cartProduct .productInfo{
+    height: auto;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
 .cartOverlay .cartProduct h3 {
     font-weight: 300;
     font-size: 16px;
@@ -67,8 +80,6 @@
 .cartOverlay .photo {
     display: flex;
     gap: 8px;
-    justify-content: center;
-    align-items: center;
 }
 
 .cartOverlay .photo img {
@@ -77,7 +88,10 @@
     display: flex;
     object-fit: contain;
     vertical-align: middle;
-    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+    background: #fff;
+    align-self: stretch;
+    flex-grow: 1;
+    order: 1;
 }
 
 /*********amount***************************/
@@ -87,6 +101,10 @@
     align-items: flex-end;
     flex-direction: column;
     justify-content: space-between;
+
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
 }
 .cartOverlay .amount input {
     box-sizing: border-box;

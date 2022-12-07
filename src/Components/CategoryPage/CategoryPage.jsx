@@ -37,7 +37,7 @@ class CategoryPage extends React.Component {
                                 <div className={s.productCard} key={product.id}>
 
                                     <div className={!product.inStock ? a.outOfStock : null}>
-                                        <NavLink to={'/pdp/' + product.id}>
+                                        <NavLink to={'/products/' + product.id}>
                                             <img className={s.productPhoto} alt={'product'} src={product.gallery[0]}/>
                                             {!product.inStock && <span>OUT OF STOCK</span>}
 

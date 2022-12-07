@@ -43,14 +43,14 @@ class CartPage extends React.Component {
                     <div key={key} className={s.order}>
 
                         <div className={s.info}>
-                            <NavLink to={'/pdp/' + order.id}>
+                            <NavLink to={'/products/' + order.id}>
                                 <h2>{order.name}</h2>
                             </NavLink>
                             <h2 className={s.brand}>{order.brand}</h2>
 
                             <div className={s.price}>
                                 <p>
-                                    {this.props.currentCurrency + ' '}
+                                    {this.props.currentCurrency}
                                     {findPrice(order.prices, this.props.currentCurrency)}
                                 </p>
                             </div>
@@ -79,10 +79,10 @@ class CartPage extends React.Component {
                 )}
 
                 <div className={s.totalPrice}>
-                    <div>
+                    <div className={s.tax}>
                         <h2>Tax 21%:</h2>
                         <h2>Quantity:</h2>
-                        <h2 style={{fontWeight: 500}}>Total:</h2>
+                        <h2>Total:</h2>
                     </div>
                     {this.props.orders.length === 0
                         ? null

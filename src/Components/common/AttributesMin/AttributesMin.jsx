@@ -1,12 +1,13 @@
-import s from "./AttributesMin.module.css";
 import React from "react";
 import {compareArray, selectAttribute} from "../../../redux/funtions";
+import ColorBoxMin from "./ColorBoxMin/ColorBoxMin";
+import SizeBoxMin from "./SizeBoxMin/SizeBoxMin";
 
 
 class AttributesMin extends React.Component {
 
     state = {
-        isSelected: this.props.attributes.items[0]
+        isSelected: null
     }
 
     componentDidMount() {
@@ -27,37 +28,12 @@ class AttributesMin extends React.Component {
         return (
             <>
                 {this.props.attributes.type === 'text'
-                    ? <div className={s.sizeBoxMin}>
-                        <div>
-                            <h4>{this.props.attributes.name}:</h4>
-                        </div>
 
-                        <div className={s.size}>
-                            {this.props.attributes.items.map((item) =>
-                                <input key={item.id} type={'button'} value={item.value} id={item.id}
-                                       className={this.state.isSelected.id === item.id ? s.select : null}
-                                       disabled={true}
-                                />
-                            )}
-                        </div>
-                    </div>
+                    ? <SizeBoxMin name={this.props.attributes.name} data={this.props.attributes.items}
+                                  isSelected={this.state.isSelected} />
 
-
-                    : <div className={s.colorBoxMin}>
-                        <div>
-                            <h4>{this.props.attributes.name}:</h4>
-                        </div>
-
-                        <div className={s.colors}>
-                            {this.props.attributes.items.map(item =>
-                                <input key={item.id} type={'button'} value={item.value} id={item.id}
-                                       style={{background: item.displayValue}}
-                                       className= {`${item.id === 'White' ? s.white : null}
-                                                    ${this.state.isSelected.id === item.id ? s.selectColor : null}`}
-                                />
-                            )}
-                        </div>
-                    </div>
+                    : <ColorBoxMin name={this.props.attributes.name} data={this.props.attributes.items}
+                                   isSelected={this.state.isSelected} />
                 }
             </>
 

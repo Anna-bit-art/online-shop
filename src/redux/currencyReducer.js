@@ -3,7 +3,7 @@ import {GET_CURRENCIES} from "../query/currencies";
 
 const SET_CURRENCIES = 'currency/SET_CURRENCIES';
 const SET_CURRENT_CURRENCY = 'currency/SET_CURRENT_CURRENCY';
-let IS_CURRENCY_OPEN = 'IS_CURRENCY_OPEN';
+let IS_CURRENCY_OPEN = 'currency/IS_CURRENCY_OPEN';
 
 
 let initialState = {

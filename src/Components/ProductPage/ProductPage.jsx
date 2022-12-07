@@ -12,7 +12,6 @@ import {Interweave} from 'interweave';
 import {transformText} from "./interweaveStyle";
 
 
-
 class ProductPage extends React.Component {
 
     state = {
@@ -24,13 +23,19 @@ class ProductPage extends React.Component {
     componentDidMount() {
         let productId = this.props.router.params.productId;
         this.props.getProduct(productId);
+
+        if(this.props.isFetching) {
+            this.setState({
+                price: findPrice(this.props.product.prices, this.props.currentCurrency)
+            })
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.product.id !== this.props.product.id) {
             this.setState({
                 mainImage: this.props.product.mainImage,
-                price: this.props.product.firstPrice
+                price: findPrice(this.props.product.prices, this.props.currentCurrency)
             })
         }
         if (prevProps.currentCurrency !== this.props.currentCurrency) {
@@ -103,11 +108,10 @@ class ProductPage extends React.Component {
                                     this.cleanOptions()
                                 }
                                 : null}>
-                                ADD TO CART
+                                Add to cart
                             </button>
 
                             <div className={s.description}>
-                                {/*{product.description}*/}
                                 <Interweave content={product.description} transform={transformText}/>
                             </div>
 
@@ -135,4 +139,3 @@ export default compose(
     withRouter
 )(ProductPage);
 
-//TODO: проблема с первоначальным значением state reload

@@ -32,25 +32,27 @@ class CartOverlay extends React.Component {
     render() {
         return (
                 <div className={s.cartOverlay}>
-                    <p>My bag,
+                    <p>My bag,&nbsp;
                         <span>
-                            {this.props.numberOrders > 1
-                            ? this.props.numberOrders + ' items'
-                            : this.props.numberOrders + ' item'}
+                            {this.props.numberOrders > 1 || this.props.numberOrders === 0
+                                ? `${this.props.numberOrders} items`
+                                : `${this.props.numberOrders} item`
+                            }
                         </span>
                     </p>
+
 
                     <div className={s.orders}>
                         {this.props.orders.map((order, key) =>
 
                             <div key={key} className={s.cartProduct}>
-                                <div>
+                                <div className={s.productInfo}>
                                     <h2>{order.name}</h2>
                                     <h2>{order.brand}</h2>
 
                                     <div className={s.price}>
                                         <p>
-                                            {this.props.currentCurrency + ' '}
+                                            {this.props.currentCurrency}
                                             {findPrice(order.prices, this.props.currentCurrency)}
                                         </p>
                                     </div>

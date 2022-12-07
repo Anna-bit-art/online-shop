@@ -1,6 +1,7 @@
 .cartPage {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .cartPage h1{
@@ -54,7 +55,6 @@
     align-items: center;
     padding: 24px 0 24px 0;
     gap: 24px;
-    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
 
 .cartPage .orderPhoto .slider{
@@ -68,6 +68,8 @@
     display: flex;
     object-fit: contain;
     vertical-align: middle;
+    background: #ffffff;
+
 }
 
 /****************selectAmount**********************/
@@ -124,6 +126,11 @@ input[value='-']{
     line-height: 28px;
     margin-bottom: 8px;
 }
+
+.cartPage .totalPrice .tax h2:last-child{
+    font-weight: 500;
+}
+
 .cartPage .sum h2{
     font-weight: 700;
 }

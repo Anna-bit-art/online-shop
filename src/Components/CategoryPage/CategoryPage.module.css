@@ -1,4 +1,4 @@
-
+/*****************Category**********************/
 .categoryPage h1 {
     margin: 0 0 103px 0;
     text-transform: capitalize;
@@ -11,12 +11,24 @@
     display: flex;
 }
 
+/*.categoryPage {*/
+/*    width: 100%;*/
+/*    box-sizing: border-box;*/
+/*    border: 1px solid red;*/
+
+/*}*/
+/*****************Products**********************/
+
 .categoryPage .products {
     display: flex;
     flex-flow: row wrap;
     row-gap: 100px;
     column-gap: 40px;
+    align-items: flex-start;
 }
+
+
+/*****************ProductCard**********************/
 
 .categoryPage .productCard {
     flex: 1;
@@ -24,6 +36,8 @@
     position: relative;
     flex-grow: 0;
     background: #FFFFFF;
+    flex: none;
+
 }
 
 .categoryPage .productCard:hover {
@@ -36,7 +50,9 @@
     width: 354px;
     height: 330px;
     object-fit: contain;
-    background: #ffffff;
+    order: 0;
+    flex-grow: 0;
+
     filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
 }
 
@@ -78,3 +94,5 @@
 .categoryPage .productCard:hover .emptyCart {
     opacity: 1;
 }
+
+

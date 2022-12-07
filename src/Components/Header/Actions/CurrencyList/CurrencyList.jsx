@@ -13,7 +13,7 @@ class CurrencyList extends React.Component {
             <div className={s.currenciesList}>
                 {this.props.currencies.map((currency) =>
                     <input type={'button'} key={currency.label} onClick={() => this.changePrice(currency.symbol)}
-                           value={currency.symbol + ' ' + currency.label}/>
+                           value={`${currency.symbol} ${currency.label}`} />
                 )}
             </div>
         )

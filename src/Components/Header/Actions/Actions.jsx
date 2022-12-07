@@ -16,11 +16,14 @@ class Actions extends React.Component {
         return (
             <>
                 <div className={s.actions}>
+
                     <div className={s.currencyLabel}>
-                        <div onClick={this.props.checkCurrencyList}>
+                        <button className={s.actionButton} onClick={this.props.checkCurrencyList} disabled={this.props.isCartOpen}>
                             <label>{this.props.currentCurrency}</label>
                             <img alt={'cart'} src={vector} className={`${s.vector} ${this.props.isCurrencyOpen && s.vectorRotate}`}/>
-                        </div>
+                        </button>
+
+
 
                         {this.props.isCurrencyOpen &&
                             <CurrencyList currencies={this.props.currencies}
@@ -32,11 +35,13 @@ class Actions extends React.Component {
                     </div>
 
 
-                    <div onClick={this.props.checkCart}>
+                    <button className={s.actionButton} onClick={this.props.checkCart} disabled={this.props.isCurrencyOpen}>
                         <img alt={'cart'} src={cart} className={s.cart}/>
                         {this.props.numberOrders > 0 && <div className={s.numberOrders}>{this.props.numberOrders}</div>}
-                    </div>
+                    </button>
                 </div>
+
+
 
                 {this.props.isCartOpen && (
                     <CartOverlay orders={this.props.orders} checkCart={this.props.checkCart}

@@ -1,0 +1,52 @@
+
+.colorBoxMin{
+    display: grid;
+    grid-template-areas:
+    'color'
+    'box';
+    position: relative;
+    height: 44px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.colorBoxMin h4 {
+    grid-area: color;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.colorBoxMin .colors{
+    grid-area: box;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 8px;
+    padding-left: 2px;
+}
+
+.colorBoxMin .colors input[value] {
+    color: transparent;
+}
+
+.colorBoxMin .colors input[type="button" i] {
+    width: 20px;
+    height: 20px;
+    outline: 1px solid #fff;
+    outline-offset: 1px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.colorBoxMin .colors input[type="button" i].white {
+    border: 1px solid #000000;
+}
+
+.colorBoxMin input[type="button" i].selectColor{
+    outline: 1px solid rgba(94, 206, 123, 1);
+}
+

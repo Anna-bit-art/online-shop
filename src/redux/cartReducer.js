@@ -1,9 +1,9 @@
 import {compareArray} from "./funtions";
 
-let ADD_ORDER = 'ADD_ORDER';
-let INCREASE_QUANTITY = 'INCREASE_QUANTITY';
-let DECREASE_QUANTITY = 'DECREASE_QUANTITY';
-let IS_CART_OPEN = 'IS_CART_OPEN';
+let ADD_ORDER = 'cart/ADD_ORDER';
+let INCREASE_QUANTITY = 'cart/INCREASE_QUANTITY';
+let DECREASE_QUANTITY = 'cart/DECREASE_QUANTITY';
+let IS_CART_OPEN = 'cart/IS_CART_OPEN';
 
 
 let initialState = {

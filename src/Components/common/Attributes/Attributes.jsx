@@ -1,12 +1,13 @@
-import s from "./Attributes.module.css";
 import React from "react";
 import {compareArray, selectAttribute} from "../../../redux/funtions";
+import SizeBox from "./SizeBox/SizeBox";
+import ColorBox from "./ColorBox/ColorBox";
 
 
 class Attributes extends React.Component {
 
     state = {
-        isSelected: this.props.attributes.items[0]
+        isSelected: null
     }
 
     componentDidMount() {
@@ -43,39 +44,12 @@ class Attributes extends React.Component {
         return (
             <>
                 {this.props.attributes.type === 'text'
-                    ? <div className={s.sizeBox}>
 
-                        <h4>{this.props.attributes.name}:</h4>
+                    ? <SizeBox data={data} chooseOption={this.chooseOption} name={this.props.attributes.name}
+                               isSelected={this.state.isSelected} isDisabled={this.props.isDisabled} />
 
-                        <div className={s.size}>
-                            {data.map((item, index) =>
-                                <input key={item.id} type={'button'} value={item.value} id={item.id}
-                                       onClick={() => this.chooseOption(index)}
-                                       disabled={this.props.isDisabled}
-                                       className={this.state.isSelected.id === item.id ? s.select : null}
-                                />
-                            )}
-                        </div>
-
-                    </div>
-
-                    : <div className={s.colorBox}>
-
-                        <h4>{this.props.attributes.name}:</h4>
-
-                        <div className={s.colors}>
-                            {data.map((item, index) =>
-                                <input key={item.id} type={'button'} value={item.value}
-                                       id={item.id}
-                                       style={{background: item.displayValue}}
-                                       onClick={() => this.chooseOption(index)}
-                                       disabled={this.props.isDisabled}
-                                       className= {`${item.id === 'White' ? s.white : null}
-                                                    ${this.state.isSelected.id === item.id ? s.selectColor : null}`}
-                                />
-                            )}
-                        </div>
-                    </div>
+                    : <ColorBox  data={data} chooseOption={this.chooseOption} name={this.props.attributes.name}
+                                 isSelected={this.state.isSelected} isDisabled={this.props.isDisabled} />
                 }
             </>
         )
@@ -84,4 +58,3 @@ class Attributes extends React.Component {
 
 export default Attributes;
 
-// TODO: первоначальное значение state должно быть пустым

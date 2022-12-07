@@ -37,8 +37,8 @@ const productReducer = (state = initialState, action) => {
                     prices: action.payload.prices,
 
                     options: [],
-                    firstPrice: action.payload.prices[0].amount,
-                    mainImage: action.payload.gallery[0]
+                    firstPrice: action.payload.prices.find(el => el.amount !== undefined).amount,
+                    mainImage: action.payload.gallery.find(el => el !== undefined)
                 }
             }
         }
