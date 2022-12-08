@@ -11,6 +11,15 @@ import CurrencyList from "./CurrencyList/CurrencyList";
 
 
 class Actions extends React.Component {
+    state = {
+        currentCurrency: ''
+    }
+
+    componentDidMount() {
+        this.setState({
+            currentCurrency: this.props.currencies.find(el => el.symbol !== undefined).symbol
+        })
+    }
 
     render() {
         return (

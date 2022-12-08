@@ -1,9 +1,8 @@
 import {GET_CURRENCIES} from "../query/currencies";
 
-
 const SET_CURRENCIES = 'currency/SET_CURRENCIES';
 const SET_CURRENT_CURRENCY = 'currency/SET_CURRENT_CURRENCY';
-let IS_CURRENCY_OPEN = 'currency/IS_CURRENCY_OPEN';
+const IS_CURRENCY_OPEN = 'currency/IS_CURRENCY_OPEN';
 
 
 let initialState = {
@@ -46,8 +45,6 @@ export const checkCurrencyList = () => ({type: IS_CURRENCY_OPEN})
 export const getCurrencies = () => async (dispatch) => {
     let currencies = await GET_CURRENCIES();
     dispatch(setCurrencies(currencies));
-    let symbol = currencies.find(el => el.symbol !== undefined).symbol;
-    dispatch(setCurrentCurrency(symbol));
 }
 
 export const getCurrentCurrency = (symbol) => (dispatch) => {

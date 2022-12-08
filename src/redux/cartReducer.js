@@ -45,7 +45,7 @@ const cartReducer = (state = initialState, action) => {
                         options: action.options,
                         quantity: 1
                     }
-                    state.orders.push(order)
+                    state.orders.unshift(order)
                 }
             }
             else {
@@ -60,9 +60,8 @@ const cartReducer = (state = initialState, action) => {
                     quantity: 1
                 }
 
-                state.orders.push(order)
+                state.orders.unshift(order)
             }
-
 
             return {
                 ...state,

@@ -63,6 +63,7 @@ class ProductPage extends React.Component {
 
     render() {
         let product = this.props.product;
+
         return <>
 
             {this.props.isFetching

@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import store from "./redux/redux-store";
+import store, {persistor} from "./redux/redux-store";
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import {Provider} from "react-redux";
+import {PersistGate} from "redux-persist/integration/react";
 
 export const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
@@ -19,7 +20,9 @@ root.render(
         <BrowserRouter>
             <ApolloProvider client={client}>
                 <Provider store={store}>
-                    <App/>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <App/>
+                    </PersistGate>
                 </Provider>
             </ApolloProvider>
         </BrowserRouter>

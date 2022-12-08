@@ -5,18 +5,30 @@ import cartReducer from "./cartReducer";
 import productReducer from "./productReducer";
 import currencyReducer from "./currencyReducer";
 
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const {createStore} = require("redux");
 
-let reducers = combineReducers({
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['currency', 'cart'],
+}
+
+let rootReducer = combineReducers({
     currency: currencyReducer,
     category: categoryReducer,
     cart: cartReducer,
     product: productReducer
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
+export const persistor = persistStore(store);
 
 export default store;
+
+
+
