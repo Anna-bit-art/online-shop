@@ -5,7 +5,6 @@ import ColorBox from "./ColorBox/ColorBox";
 
 
 class Attributes extends React.Component {
-
     state = {
         isSelected: null
     }

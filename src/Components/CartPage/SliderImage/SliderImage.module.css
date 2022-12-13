@@ -1,5 +1,4 @@
-/****************photoSwitch**********************/
- .photoSwitch{
+.photoSwitch {
     position: absolute;
     right: 16px;
     bottom: 16px;
@@ -9,12 +8,14 @@
     padding: 0;
     gap: 8px;
 }
- .photoSwitch div {
+
+.photoSwitch div {
     width: 24px;
     height: 24px;
     position: relative;
     cursor: pointer;
 }
+
 .photoSwitch div:before {
     content: '';
     position: absolute;
@@ -27,11 +28,12 @@
     background: url("../../../img/CaretRight.png") no-repeat center;
     background-size: revert;
 }
-.photoSwitch .left:before{
-    background: url("../../../img/CaretLeft.png") no-repeat center ;
+
+.photoSwitch .left:before {
+    background: url("../../../img/CaretLeft.png") no-repeat center;
 }
 
-.photoSwitch input[type='button' i]{
+.photoSwitch input[type='button' i] {
     width: 24px;
     height: 24px;
     background: rgba(0, 0, 0, 0.73);
@@ -39,6 +41,7 @@
     z-index: 1000;
     border: none;
 }
-.cartPage .photoSwitch input:hover{
+
+.cartPage .photoSwitch input:hover {
     border: none;
 }

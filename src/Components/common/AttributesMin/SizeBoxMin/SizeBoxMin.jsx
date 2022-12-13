@@ -16,14 +16,11 @@ class SizeBoxMin extends React.Component {
                     {this.props.data.map((item) =>
                         <input key={item.id} type={'button'} value={item.value} id={item.id}
                                className={(this.props.isSelected !== null && this.props.isSelected.id === item.id)
-                                               ? s.select
-                                               : null}
+                                   ? s.select : null}
                         />
                     )}
                 </div>
             </div>
-
-
         )
     }
 }

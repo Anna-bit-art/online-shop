@@ -12,13 +12,12 @@ import {getCategoryProducts} from "../../redux/categoryReducer";
 
 
 class CategoryPage extends React.Component {
-
     componentDidMount() {
         this.props.getCategoryProducts(this.props.currentCategory)
     }
 
     componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-        if(prevProps.currentCategory !== this.props.currentCategory) {
+        if (prevProps.currentCategory !== this.props.currentCategory) {
             this.props.getCategoryProducts(this.props.currentCategory)
         }
     }
@@ -29,38 +28,39 @@ class CategoryPage extends React.Component {
 
                 <h1>{this.props.currentCategory}</h1>
 
-                { this.props.isFetching
-                        ? <Loader/>
+                {this.props.isFetching
+                    ? <Loader/>
 
-                        : <div className={s.products}>
-                            {this.props.products.map(product =>
-                                <div className={s.productCard} key={product.id}>
+                    : <div className={s.products}>
 
-                                    <div className={!product.inStock ? a.outOfStock : null}>
-                                        <NavLink to={'/products/' + product.id}>
-                                            <img className={s.productPhoto} alt={'product'} src={product.gallery[0]}/>
-                                            {!product.inStock && <span>OUT OF STOCK</span>}
+                        {this.props.products.map(product =>
+                            <div className={s.productCard} key={product.id}>
 
-                                            <div>
-                                                <h3>{product.name} {product.brand}</h3>
-                                                <p>
-                                                    {this.props.currentCurrency + ' '}
-                                                    {findPrice(product.prices, this.props.currentCurrency)}
-                                                </p>
-                                            </div>
-                                        </NavLink>
+                                <div className={!product.inStock ? a.outOfStock : null}>
+                                    <NavLink to={'/products/' + product.id}>
+                                        <img className={s.productPhoto} alt={'product'} src={product.gallery[0]}/>
+                                        {!product.inStock && <span>OUT OF STOCK</span>}
 
-                                        {product.inStock &&
-                                        <div className={s.emptyCart}
-                                             onClick={() => this.props.addProduct(product, product.options)}>
-                                            <img alt={'cart'} src={cart}/>
+                                        <div>
+                                            <h3>{product.name} {product.brand}</h3>
+                                            <p>
+                                                {this.props.currentCurrency}
+                                                {findPrice(product.prices, this.props.currentCurrency)}
+                                            </p>
                                         </div>
-                                        }
+                                    </NavLink>
 
+                                    {product.inStock &&
+                                    <div className={s.emptyCart}
+                                         onClick={() => this.props.addProduct(product, product.options)}>
+                                        <img alt={'cart'} src={cart}/>
                                     </div>
+                                    }
                                 </div>
-                            )}
-                        </div>
+
+                            </div>
+                        )}
+                    </div>
                 }
             </div>
         )

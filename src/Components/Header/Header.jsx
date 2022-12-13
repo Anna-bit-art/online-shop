@@ -8,15 +8,16 @@ import {getCategories} from "../../redux/categoryReducer";
 import {getCurrencies} from "../../redux/currencyReducer";
 
 
-
 class Header extends React.Component {
     componentDidMount() {
         this.props.getCategories();
         this.props.getCurrencies();
     }
+
     render() {
         return (
             <header>
+
                 <div className={s.logo}>
                     <img alt={'logo'} src={logo}/>
                 </div>
@@ -30,9 +31,11 @@ class Header extends React.Component {
                         <Actions/>
                     </div>
                 </div>
+
             </header>
         )
     }
 }
+
 export default connect(null, {getCategories, getCurrencies})
 (Header)

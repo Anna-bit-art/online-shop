@@ -6,7 +6,8 @@ header {
     height: 80px;
     background: #fff;
 }
-.header{
+
+.header {
     display: flex;
     position: relative;
     width: 100%;
@@ -15,10 +16,11 @@ header {
     z-index: 1;
 }
 
-.header .navbar{
+.header .navbar {
     margin-top: 24px;
 }
-.header .actions{
+
+.header .actions {
     margin-top: 23px;
 }
 

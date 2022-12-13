@@ -9,7 +9,6 @@ import {calculatePrice, findPrice} from "../../redux/funtions";
 
 
 class CartPage extends React.Component {
-
     state = {
         total: 0,
         taxAmount: 0
@@ -32,7 +31,6 @@ class CartPage extends React.Component {
             })
         }
     }
-
 
     render() {
         return (
@@ -59,7 +57,6 @@ class CartPage extends React.Component {
                                 <Attributes key={attributes.name} attributes={attributes}
                                             options={order.options} isDisabled={true}/>
                             )}
-
                         </div>
 
                         <div className={s.orderPhoto}>
@@ -74,7 +71,6 @@ class CartPage extends React.Component {
                                 <SliderImage key={key} gallery={order.gallery}/>
                             </div>
                         </div>
-
                     </div>
                 )}
 
@@ -109,7 +105,6 @@ let mapStateToProps = (state) => {
         numberOrders: state.cart.numberOrders
     }
 }
-
 
 export default connect(mapStateToProps, {increaseQuantity, decreaseQuantity})
 (CartPage);

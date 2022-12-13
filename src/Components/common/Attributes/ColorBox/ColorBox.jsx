@@ -17,7 +17,7 @@ class ColorBox extends React.Component {
                                onClick={() => this.props.chooseOption(index)}
                                disabled={this.props.isDisabled}
                                className={`${item.id === 'White' ? s.white : null}
-                                                    ${(this.props.isSelected !== null && this.props.isSelected.id === item.id) ? s.selectColor : null}`}
+                                           ${(this.props.isSelected !== null && this.props.isSelected.id === item.id) ? s.selectColor : null}`}
                         />
                     )}
                 </div>

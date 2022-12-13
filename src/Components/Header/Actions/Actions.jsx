@@ -24,33 +24,33 @@ class Actions extends React.Component {
     render() {
         return (
             <>
+
                 <div className={s.actions}>
 
                     <div className={s.currencyLabel}>
-                        <button className={s.actionButton} onClick={this.props.checkCurrencyList} disabled={this.props.isCartOpen}>
+                        <button className={s.actionButton} onClick={this.props.checkCurrencyList}
+                                disabled={this.props.isCartOpen}>
                             <label>{this.props.currentCurrency}</label>
-                            <img alt={'cart'} src={vector} className={`${s.vector} ${this.props.isCurrencyOpen && s.vectorRotate}`}/>
+                            <img alt={'cart'} src={vector}
+                                 className={`${s.vector} ${this.props.isCurrencyOpen && s.vectorRotate}`}/>
                         </button>
 
-
-
                         {this.props.isCurrencyOpen &&
-                            <CurrencyList currencies={this.props.currencies}
-                                          changePrice={this.changePrice}
-                                          getCurrentCurrency={this.props.getCurrentCurrency}
-                                          checkCurrencyList={this.props.checkCurrencyList}
-                            />
+                        <CurrencyList currencies={this.props.currencies}
+                                      getCurrentCurrency={this.props.getCurrentCurrency}
+                                      checkCurrencyList={this.props.checkCurrencyList}
+                        />
                         }
                     </div>
 
 
-                    <button className={s.actionButton} onClick={this.props.checkCart} disabled={this.props.isCurrencyOpen}>
+                    <button className={s.actionButton} onClick={this.props.checkCart}
+                            disabled={this.props.isCurrencyOpen}>
                         <img alt={'cart'} src={cart} className={s.cart}/>
                         {this.props.numberOrders > 0 && <div className={s.numberOrders}>{this.props.numberOrders}</div>}
                     </button>
+
                 </div>
-
-
 
                 {this.props.isCartOpen && (
                     <CartOverlay orders={this.props.orders} checkCart={this.props.checkCart}
@@ -60,6 +60,7 @@ class Actions extends React.Component {
                                  decreaseQuantity={this.props.decreaseQuantity}
                     />
                 )}
+
             </>
         )
     }

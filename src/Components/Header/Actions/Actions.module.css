@@ -22,16 +22,18 @@
     font-size: 16px;
     line-height: inherit;
 }
-.actions  .currencyButton, .cartButton:hover{
+
+.actions .currencyButton, .cartButton:hover {
     background: #FFFFFF;
     border: none;
     color: #FFFFFF;
     box-sizing: border-box;
 }
 
-.actions .currencyLabel{
+.actions .currencyLabel {
     width: 38px;
 }
+
 /*****************currency*******************************/
 .actions label {
     font-weight: 500;
@@ -48,12 +50,11 @@
     margin: 21px 0 15px 10px;
 }
 
-.actions .vectorRotate{
+.actions .vectorRotate {
     transform: rotate(180deg);
 }
 
 /*************************cart*******************************/
-
 .actions .cart {
     filter: invert(100);
     width: 20px;

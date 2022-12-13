@@ -13,7 +13,6 @@ import {transformText} from "./interweaveStyle";
 
 
 class ProductPage extends React.Component {
-
     state = {
         mainImage: this.props.product.mainImage,
         price: this.props.product.firstPrice,
@@ -24,7 +23,7 @@ class ProductPage extends React.Component {
         let productId = this.props.router.params.productId;
         this.props.getProduct(productId);
 
-        if(this.props.isFetching) {
+        if (this.props.isFetching) {
             this.setState({
                 price: findPrice(this.props.product.prices, this.props.currentCurrency)
             })
@@ -63,7 +62,6 @@ class ProductPage extends React.Component {
 
     render() {
         let product = this.props.product;
-
         return <>
 
             {this.props.isFetching
@@ -103,12 +101,13 @@ class ProductPage extends React.Component {
                                 </p>
                             </div>
 
-                            <button onClick={product.inStock
-                                ? () => {
-                                    this.props.addProduct(product, this.state.options);
-                                    this.cleanOptions()
-                                }
-                                : null}>
+                            <button disabled={!product.inStock}
+                                    onClick={product.inStock
+                                        ? () => {
+                                            this.props.addProduct(product, this.state.options);
+                                            this.cleanOptions()
+                                        }
+                                        : null}>
                                 Add to cart
                             </button>
 

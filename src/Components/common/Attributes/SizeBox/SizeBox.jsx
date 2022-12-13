@@ -20,8 +20,8 @@ class SizeBox extends React.Component {
                 </div>
 
             </div>
-
         )
-}}
+    }
+}
 
 export default SizeBox;

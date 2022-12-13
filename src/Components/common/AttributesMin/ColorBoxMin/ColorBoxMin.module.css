@@ -1,5 +1,4 @@
-
-.colorBoxMin{
+.colorBoxMin {
     display: grid;
     grid-template-areas:
     'color'
@@ -19,7 +18,7 @@
     font-weight: 400;
 }
 
-.colorBoxMin .colors{
+.colorBoxMin .colors {
     grid-area: box;
     display: flex;
     flex-flow: row;
@@ -46,7 +45,7 @@
     border: 1px solid #000000;
 }
 
-.colorBoxMin input[type="button" i].selectColor{
+.colorBoxMin input[type="button" i].selectColor {
     outline: 1px solid rgba(94, 206, 123, 1);
 }
 

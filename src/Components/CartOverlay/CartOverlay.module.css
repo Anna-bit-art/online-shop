@@ -19,18 +19,20 @@
     display: inline-flex;
 }
 
-.cartOverlay span{
+.cartOverlay span {
     text-transform: lowercase;
     font-size: 16px;
     line-height: 160%;
     margin: 0;
 }
+
 .cartOverlay h2 {
     font-weight: 300;
     font-size: 16px;
     line-height: 160%;
     max-width: 130px;
 }
+
 /*********************orders***************************/
 .cartOverlay .orders {
     display: flex;
@@ -40,39 +42,42 @@
     max-height: 600px;
     overflow: auto;
     padding: 0;
-
     flex: none;
     order: 0;
     flex-grow: 0;
 }
-.cartOverlay .orders p{
+
+.cartOverlay .orders p {
     margin: 8px 0 0 0;
 }
+
 /****cartProduct***************************/
-.cartOverlay .cartProduct{
+.cartOverlay .cartProduct {
     display: flex;
     justify-content: space-between;
     height: content-box;
 }
 
-.cartOverlay .cartProduct .productInfo{
+.cartOverlay .cartProduct .productInfo {
     height: auto;
 
     flex: none;
     order: 0;
     flex-grow: 0;
 }
+
 .cartOverlay .cartProduct h3 {
     font-weight: 300;
     font-size: 16px;
     line-height: 160%;
     margin-bottom: 4px;
 }
-.cartOverlay .price{
+
+.cartOverlay .price {
     width: 100%;
 }
 
-.cartOverlay .price p{
+.cartOverlay .price p {
     font-weight: 500;
 }
 
@@ -106,6 +111,7 @@
     align-self: stretch;
     flex-grow: 0;
 }
+
 .cartOverlay .amount input {
     box-sizing: border-box;
     border: 1px solid #1D1F22;
@@ -118,7 +124,7 @@
     font-weight: 500;
 }
 
-input[value='-']{
+input[value='-'] {
     padding-bottom: 2px;
 }
 
@@ -127,21 +133,21 @@ input[value='-']{
 }
 
 /******************************total+buttons***************************/
-
-
-.cartOverlay .total, .buttons{
+.cartOverlay .total, .buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 32px;
 }
-.cartOverlay .total{
+
+.cartOverlay .total {
     height: 27px;
 }
-.cartOverlay .total p{
+
+.cartOverlay .total p {
     padding-right: 4px;
 }
 
-.cartOverlay .buttons button{
+.cartOverlay .buttons button {
     display: flex;
     width: 140px;
     height: 43px;

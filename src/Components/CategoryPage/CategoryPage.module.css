@@ -11,14 +11,7 @@
     display: flex;
 }
 
-/*.categoryPage {*/
-/*    width: 100%;*/
-/*    box-sizing: border-box;*/
-/*    border: 1px solid red;*/
-
-/*}*/
 /*****************Products**********************/
-
 .categoryPage .products {
     display: flex;
     flex-flow: row wrap;
@@ -27,9 +20,7 @@
     align-items: flex-start;
 }
 
-
 /*****************ProductCard**********************/
-
 .categoryPage .productCard {
     flex: 1;
     padding: 16px;
@@ -37,7 +28,6 @@
     flex-grow: 0;
     background: #FFFFFF;
     flex: none;
-
 }
 
 .categoryPage .productCard:hover {
@@ -68,9 +58,7 @@
     background: #fff;
 }
 
-
 /*************************emptyCart*****************/
-
 .emptyCart {
     position: absolute;
     right: 31px;

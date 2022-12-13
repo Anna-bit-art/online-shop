@@ -5,7 +5,6 @@ import SizeBoxMin from "./SizeBoxMin/SizeBoxMin";
 
 
 class AttributesMin extends React.Component {
-
     state = {
         isSelected: null
     }
@@ -30,13 +29,12 @@ class AttributesMin extends React.Component {
                 {this.props.attributes.type === 'text'
 
                     ? <SizeBoxMin name={this.props.attributes.name} data={this.props.attributes.items}
-                                  isSelected={this.state.isSelected} />
+                                  isSelected={this.state.isSelected}/>
 
                     : <ColorBoxMin name={this.props.attributes.name} data={this.props.attributes.items}
-                                   isSelected={this.state.isSelected} />
+                                   isSelected={this.state.isSelected}/>
                 }
             </>
-
         )
     }
 }

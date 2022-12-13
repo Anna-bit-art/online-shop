@@ -3,7 +3,6 @@ import s from "./SliderImage.module.css"
 
 
 class SliderImage extends React.Component {
-
     state = {
         counter: 0
     }
@@ -30,7 +29,6 @@ class SliderImage extends React.Component {
     render() {
         return (
             <>
-
                 <img alt={'orderImg'} src={this.props.gallery[this.state.counter]}/>
 
                 {this.props.gallery.length > 1 &&

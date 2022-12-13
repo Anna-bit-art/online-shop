@@ -1,4 +1,4 @@
-.over{
+.over {
     position: absolute;
     background: dimgrey;
     width: 100%;
@@ -11,6 +11,6 @@
     z-index: 1
 }
 
-.transparent{
+.transparent {
     background: transparent;
 }
