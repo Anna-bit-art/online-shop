@@ -22,10 +22,15 @@ const categoryReducer = (state = initialState, action) => {
         }
 
         case SET_CATEGORIES: {
-            return {...state, categories: [...action.categories]}
+            return {
+                ...state,
+                categories: [...action.categories]}
         }
         case SET_CURRENT_CATEGORY: {
-            return {...state, currentCategory: action.currentCategory}
+            return {
+                ...state,
+                currentCategory: action.currentCategory
+            }
         }
 
         case SET_PRODUCTS: {
@@ -56,13 +61,13 @@ export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFe
 
 
 export const getCategories = () => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
     let categories = await GET_CATEGORIES();
     dispatch(setCategories(categories));
-    let currentCurrency = categories.find(e => e !== undefined).name;
-    dispatch(setCurrentCategory(currentCurrency));
+    dispatch(toggleIsFetching(false));
 }
 
-export const setCategory = (category) => async (dispatch) => {
+export const setCategory = (category) => (dispatch) => {
     dispatch(setCurrentCategory(category));
 }
 
