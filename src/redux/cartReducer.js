@@ -16,6 +16,7 @@ let initialState = {
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
+
         case IS_CART_OPEN: {
             return {
                 ...state,
@@ -43,7 +44,7 @@ const cartReducer = (state = initialState, action) => {
                         prices: action.payload.prices,
                         attributes: action.payload.attributes,
                         options: action.options,
-                        quantity: 1
+                        quantity: 1,
                     }
                     state.orders.unshift(order)
                 }
@@ -57,7 +58,7 @@ const cartReducer = (state = initialState, action) => {
                     prices: action.payload.prices,
                     attributes: action.payload.attributes,
                     options: action.options,
-                    quantity: 1
+                    quantity: 1,
                 }
 
                 state.orders.unshift(order)
@@ -107,10 +108,11 @@ const cartReducer = (state = initialState, action) => {
     }
 }
 
-export const checkCart = () => ({type: IS_CART_OPEN})
-export const setProduct = (payload, options) => ({type: ADD_ORDER, payload, options})
-export const increaseQuantity = (payload) => ({type: INCREASE_QUANTITY, payload})
-export const decreaseQuantity = (payload) => ({type: DECREASE_QUANTITY, payload})
+export const checkCart = () => ({type: IS_CART_OPEN});
+export const setProduct = (payload, options) => ({type: ADD_ORDER, payload, options});
+export const increaseQuantity = (payload) => ({type: INCREASE_QUANTITY, payload});
+export const decreaseQuantity = (payload) => ({type: DECREASE_QUANTITY, payload});
+
 
 
 export const addProduct = (payload, options) => (dispatch) => {

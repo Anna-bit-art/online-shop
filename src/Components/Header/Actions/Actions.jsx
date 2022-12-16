@@ -11,26 +11,16 @@ import CurrencyList from "./CurrencyList/CurrencyList";
 
 
 class Actions extends React.Component {
-    state = {
-        currentCurrency: ''
-    }
-
-    componentDidMount() {
-        this.setState({
-            currentCurrency: this.props.currencies.find(el => el.symbol !== undefined).symbol
-        })
-    }
 
     render() {
         return (
             <>
-
                 <div className={s.actions}>
 
                     <div className={s.currencyLabel}>
                         <button className={s.actionButton} onClick={this.props.checkCurrencyList}
                                 disabled={this.props.isCartOpen}>
-                            <label>{this.props.currentCurrency}</label>
+                            <label>{this.props.currentCurrency ? this.props.currentCurrency : this.props.defaultCurrency }</label>
                             <img alt={'cart'} src={vector}
                                  className={`${s.vector} ${this.props.isCurrencyOpen && s.vectorRotate}`}/>
                         </button>
@@ -70,6 +60,7 @@ let mapStateToProps = (state) => {
     return {
         currencies: state.currency.currencies,
         currentCurrency: state.currency.currentCurrency,
+        defaultCurrency: state.currency.defaultCurrency,
         isCurrencyOpen: state.currency.isCurrencyOpen,
         isCartOpen: state.cart.isCartOpen,
         numberOrders: state.cart.numberOrders,

@@ -14,7 +14,7 @@ const {createStore} = require("redux");
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['currency', 'cart', 'category'],
+    whitelist: ['cart', 'currency', 'category'],
 }
 
 let rootReducer = combineReducers({
@@ -25,7 +25,7 @@ let rootReducer = combineReducers({
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
-const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
+const store = createStore( persistedReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
 export const persistor = persistStore(store);
 
 export default store;

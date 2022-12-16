@@ -6,16 +6,24 @@ import {connect} from "react-redux";
 
 class Navbar extends React.Component {
     state = {
-        activeCategory: ''
+        activeCategory: this.props.defaultCategory
     }
 
     componentDidMount() {
-        if (!this.props.currentCategory){
-            this.setState({activeCategory: this.props.categories.find(e => e !== undefined).name})
+        if (!this.props.currentCategory) {
+            this.setState({activeCategory: this.props.defaultCategory})
+            this.props.setCategory(this.props.defaultCategory);
         } else {
             this.setState({activeCategory: this.props.currentCategory})
         }
     }
+
+    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+        if (prevProps.currentCategory !== this.props.currentCategory) {
+            this.setState({activeCategory: this.props.currentCategory})
+        }
+    }
+
 
     setCurrentCategory = (category) => {
         this.setState({activeCategory: category})
@@ -23,7 +31,7 @@ class Navbar extends React.Component {
     }
 
     render() {
-        console.log(this.state)
+
         return (
             <ul className={s.nav}>
                 {this.props.categories.map(category =>
@@ -45,6 +53,7 @@ class Navbar extends React.Component {
 let mapStateToProps = (state) => {
     return {
         categories: state.category.categories,
+        defaultCategory: state.category.defaultCategory,
         currentCategory: state.category.currentCategory,
         isFetching: state.category.isFetching
     }

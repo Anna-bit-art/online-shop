@@ -9,6 +9,7 @@ const TOGGLE_IS_FETCHING = 'category/TOGGLE_IS_FETCHING';
 let initialState = {
     isFetching: false,
     categories: [],
+    defaultCategory: '',
     currentCategory: '',
     products: []
 }
@@ -24,7 +25,9 @@ const categoryReducer = (state = initialState, action) => {
         case SET_CATEGORIES: {
             return {
                 ...state,
-                categories: [...action.categories]}
+                categories: [...action.categories],
+                defaultCategory: action.categories.find(e => e !== undefined).name
+            }
         }
         case SET_CURRENT_CATEGORY: {
             return {

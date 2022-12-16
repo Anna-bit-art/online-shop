@@ -14,33 +14,27 @@ import {transformText} from "./interweaveStyle";
 
 class ProductPage extends React.Component {
     state = {
+        currency: '',
         mainImage: this.props.product.mainImage,
-        price: this.props.product.firstPrice,
         options: []
     }
 
     componentDidMount() {
         let productId = this.props.router.params.productId;
         this.props.getProduct(productId);
-
-        if (this.props.isFetching) {
-            this.setState({
-                price: findPrice(this.props.product.prices, this.props.currentCurrency)
-            })
-        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.product.id !== this.props.product.id) {
             this.setState({
                 mainImage: this.props.product.mainImage,
-                price: findPrice(this.props.product.prices, this.props.currentCurrency)
+                options: [],
+                currency: this.props.currentCurrency ? this.props.currentCurrency : this.props.defaultCurrency
             })
         }
-        if (prevProps.currentCurrency !== this.props.currentCurrency) {
-            this.setState({price: this.props.isFetching ? null : findPrice(this.props.product.prices, this.props.currentCurrency)})
+        if ((this.props.currentCurrency && prevProps.currentCurrency) !== this.props.currentCurrency ) {
+                this.setState({currency: this.props.currentCurrency})
         }
-
     }
 
     changePhoto = (i) => {
@@ -54,10 +48,6 @@ class ProductPage extends React.Component {
         } else {
             this.setState({options: this.state.options.map((el, i) => (i === index ? option : el))})
         }
-    }
-
-    cleanOptions = () => {
-        this.setState({options: []})
     }
 
     render() {
@@ -96,18 +86,14 @@ class ProductPage extends React.Component {
                             <div className={s.price}>
                                 <h4>PRICE:</h4>
                                 <p>
-                                    {this.props.currentCurrency}
-                                    {this.state.price}
+                                    {this.state.currency}
+                                    {this.state.currency && findPrice(product.prices, this.state.currency) }
                                 </p>
                             </div>
 
                             <button disabled={!product.inStock}
                                     onClick={product.inStock
-                                        ? () => {
-                                            this.props.addProduct(product, this.state.options);
-                                            this.cleanOptions()
-                                        }
-                                        : null}>
+                                        ? () => this.props.addProduct(product, this.state.options) : null}>
                                 Add to cart
                             </button>
 
@@ -130,12 +116,13 @@ let mapStateToProps = (state) => {
     return {
         product: state.product.product,
         isFetching: state.product.isFetching,
-        currentCurrency: state.currency.currentCurrency
+        currentCurrency: state.currency.currentCurrency,
+        defaultCurrency: state.currency.defaultCurrency
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {getProduct, addProduct, findPrice}),
+    connect(mapStateToProps, {getProduct, addProduct}),
     withRouter
 )(ProductPage);
 

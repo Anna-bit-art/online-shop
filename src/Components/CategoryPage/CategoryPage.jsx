@@ -13,7 +13,11 @@ import {getCategoryProducts} from "../../redux/categoryReducer";
 
 class CategoryPage extends React.Component {
     componentDidMount() {
-        this.props.getCategoryProducts(this.props.currentCategory)
+        if (!this.props.currentCategory) {
+            this.props.getCategoryProducts(this.props.defaultCategory);
+        } else {
+            this.props.getCategoryProducts(this.props.currentCategory)
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
@@ -44,8 +48,9 @@ class CategoryPage extends React.Component {
                                         <div>
                                             <h3>{product.name} {product.brand}</h3>
                                             <p>
-                                                {this.props.currentCurrency}
-                                                {findPrice(product.prices, this.props.currentCurrency)}
+                                                {!this.props.currentCurrency ? this.props.defaultCurrency : this.props.currentCurrency}
+                                                {this.props.currentCurrency ? findPrice(product.prices, this.props.currentCurrency)
+                                                    : findPrice(product.prices, this.props.defaultCurrency)}
                                             </p>
                                         </div>
                                     </NavLink>
@@ -70,9 +75,11 @@ class CategoryPage extends React.Component {
 let mapStateToProps = (state) => {
     return {
         products: state.category.products,
+        defaultCurrency: state.currency.defaultCurrency,
+        defaultCategory: state.category.defaultCategory,
+        currentCurrency: state.currency.currentCurrency,
         currentCategory: state.category.currentCategory,
-        isFetching: state.category.isFetching,
-        currentCurrency: state.currency.currentCurrency
+        isFetching: state.category.isFetching
     }
 }
 
