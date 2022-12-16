@@ -12,15 +12,16 @@ import {getCategoryProducts} from "../../redux/categoryReducer";
 
 
 class CategoryPage extends React.Component {
-
     componentDidMount() {
         if (!this.props.currentCategory) {
             this.props.getCategoryProducts(this.props.defaultCategory);
+        } else {
+            this.props.getCategoryProducts(this.props.currentCategory)
         }
     }
 
     componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-        if (this.props.currentCategory && prevProps.currentCategory !== this.props.currentCategory) {
+        if (prevProps.currentCategory !== this.props.currentCategory) {
             this.props.getCategoryProducts(this.props.currentCategory)
         }
     }
