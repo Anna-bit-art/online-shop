@@ -13,9 +13,7 @@ import {getCategoryProducts} from "../../redux/categoryReducer";
 
 class CategoryPage extends React.Component {
     componentDidMount() {
-        if (!this.props.currentCategory) {
-            this.props.getCategoryProducts(this.props.defaultCategory);
-        } else {
+        if (this.props.currentCategory) {
             this.props.getCategoryProducts(this.props.currentCategory);
         }
     }
@@ -30,7 +28,7 @@ class CategoryPage extends React.Component {
         return (
             <div className={s.categoryPage}>
 
-                <h1>{!this.props.currentCategory ? this.props.defaultCategory : this.props.currentCategory}</h1>
+                <h1>{this.props.currentCategory}</h1>
 
                 {this.props.isFetching
                     ? <Loader/>
@@ -74,7 +72,6 @@ class CategoryPage extends React.Component {
 let mapStateToProps = (state) => {
     return {
         products: state.category.products,
-        defaultCategory: state.category.defaultCategory,
         currentCurrency: state.currency.currentCurrency,
         currentCategory: state.category.currentCategory,
         isFetching: state.category.isFetching
