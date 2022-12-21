@@ -5,12 +5,18 @@ import cart from "../../../img/cart.png";
 import vector from "../../../img/Vector.png"
 import {checkCart, decreaseQuantity, increaseQuantity} from "../../../redux/cartReducer";
 import {compose} from "redux";
-import {checkCurrencyList, getCurrentCurrency} from "../../../redux/currencyReducer";
+import {checkCurrencyList, setCurrency} from "../../../redux/currencyReducer";
 import CartOverlay from "../../CartOverlay/CartOverlay";
 import CurrencyList from "./CurrencyList/CurrencyList";
 
 
 class Actions extends React.Component {
+
+    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+        if(!prevProps.currentCurrency) {
+            this.props.setCurrency(this.props.defaultCurrency);
+        }
+    }
 
     render() {
         return (
@@ -20,14 +26,14 @@ class Actions extends React.Component {
                     <div className={s.currencyLabel}>
                         <button className={s.actionButton} onClick={this.props.checkCurrencyList}
                                 disabled={this.props.isCartOpen}>
-                            <label>{this.props.currentCurrency ? this.props.currentCurrency : this.props.defaultCurrency }</label>
+                            <label>{this.props.currentCurrency}</label>
                             <img alt={'cart'} src={vector}
                                  className={`${s.vector} ${this.props.isCurrencyOpen && s.vectorRotate}`}/>
                         </button>
 
                         {this.props.isCurrencyOpen &&
                         <CurrencyList currencies={this.props.currencies}
-                                      getCurrentCurrency={this.props.getCurrentCurrency}
+                                      setCurrency={this.props.setCurrency}
                                       checkCurrencyList={this.props.checkCurrencyList}
                         />
                         }
@@ -73,7 +79,7 @@ export default compose(
         checkCart,
         increaseQuantity,
         decreaseQuantity,
-        getCurrentCurrency,
+        setCurrency,
         checkCurrencyList
     }))
 (Actions)

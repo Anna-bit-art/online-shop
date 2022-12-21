@@ -9,30 +9,20 @@ import {calculatePrice, findPrice} from "../../redux/funtions";
 
 class CartOverlay extends React.Component {
     state = {
-        currency: '',
         total: 0
     }
 
     componentDidMount() {
-        if (this.props.defaultCurrency) {
-            this.setState({
-                currency: this.props.currentCurrency ? this.props.currentCurrency : this.props.defaultCurrency,
-                total: this.props.currentCurrency ? calculatePrice(this.props.orders, this.props.currentCurrency).total
-                    : calculatePrice(this.props.orders, this.props.defaultCurrency).total
-            })
+        if(this.props.numberOrders > 0 && this.props.currentCurrency) {
+            this.setState({total: calculatePrice(this.props.orders, this.props.currentCurrency).total});
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if ((this.props.currentCurrency && prevProps.currentCurrency) !== this.props.currentCurrency){
+        if ((this.props.currentCurrency && prevProps.currentCurrency !== this.props.currentCurrency) ||
+                (prevProps.numberOrders !== this.props.numberOrders)){
             this.setState({
-                currency: this.props.currentCurrency,
                 total: calculatePrice(this.props.orders, this.props.currentCurrency).total
-            })
-        }
-        if (prevProps.numberOrders !== this.props.numberOrders) {
-            this.setState({
-                total: calculatePrice(this.props.orders, this.state.currency).total
             })
         }
     }
@@ -59,8 +49,8 @@ class CartOverlay extends React.Component {
 
                                 <div className={s.price}>
                                     <p>
-                                        {this.state.currency}
-                                        {this.state.currency ? findPrice(order.prices, this.state.currency) : null}
+                                        {this.props.currentCurrency}
+                                        {this.props.currentCurrency && findPrice(order.prices, this.props.currentCurrency)}
                                     </p>
                                 </div>
 
@@ -90,8 +80,8 @@ class CartOverlay extends React.Component {
                 <div className={s.total}>
                     <p>Total:</p>
                     {this.props.orders.length > 0
-                        ? <p>{this.state.currency}{this.state.total}</p>
-                        : <p>{this.state.currency}0</p>
+                        ? <p>{this.props.currentCurrency}{this.state.total}</p>
+                        : <p>{this.props.currentCurrency}0</p>
                     }
                 </div>
 
@@ -109,7 +99,6 @@ class CartOverlay extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        defaultCurrency: state.currency.defaultCurrency,
         currentCurrency: state.currency.currentCurrency,
         orders: state.cart.orders,
         numberOrders: state.cart.numberOrders

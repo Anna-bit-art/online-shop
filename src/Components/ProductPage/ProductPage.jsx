@@ -14,7 +14,6 @@ import {transformText} from "./interweaveStyle";
 
 class ProductPage extends React.Component {
     state = {
-        currency: '',
         mainImage: this.props.product.mainImage,
         options: []
     }
@@ -28,12 +27,8 @@ class ProductPage extends React.Component {
         if (prevProps.product.id !== this.props.product.id) {
             this.setState({
                 mainImage: this.props.product.mainImage,
-                options: [],
-                currency: this.props.currentCurrency ? this.props.currentCurrency : this.props.defaultCurrency
+                options: []
             })
-        }
-        if ((this.props.currentCurrency && prevProps.currentCurrency) !== this.props.currentCurrency ) {
-                this.setState({currency: this.props.currentCurrency})
         }
     }
 
@@ -86,8 +81,8 @@ class ProductPage extends React.Component {
                             <div className={s.price}>
                                 <h4>PRICE:</h4>
                                 <p>
-                                    {this.state.currency}
-                                    {this.state.currency && findPrice(product.prices, this.state.currency) }
+                                    {this.props.currentCurrency}
+                                    {this.props.product.id && findPrice(product.prices, this.props.currentCurrency) }
                                 </p>
                             </div>
 
@@ -117,7 +112,6 @@ let mapStateToProps = (state) => {
         product: state.product.product,
         isFetching: state.product.isFetching,
         currentCurrency: state.currency.currentCurrency,
-        defaultCurrency: state.currency.defaultCurrency
     }
 }
 

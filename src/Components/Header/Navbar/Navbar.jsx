@@ -5,41 +5,24 @@ import {setCategory} from "../../../redux/categoryReducer";
 import {connect} from "react-redux";
 
 class Navbar extends React.Component {
-    state = {
-        activeCategory: this.props.defaultCategory
-    }
-
     componentDidMount() {
         if (!this.props.currentCategory) {
-            this.setState({activeCategory: this.props.defaultCategory})
             this.props.setCategory(this.props.defaultCategory);
         } else {
-            this.setState({activeCategory: this.props.currentCategory})
+            this.props.setCategory(this.props.currentCategory);
         }
-    }
-
-    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-        if (prevProps.currentCategory !== this.props.currentCategory) {
-            this.setState({activeCategory: this.props.currentCategory})
-        }
-    }
-
-
-    setCurrentCategory = (category) => {
-        this.setState({activeCategory: category})
-        this.props.setCategory(category);
     }
 
     render() {
-
         return (
             <ul className={s.nav}>
                 {this.props.categories.map(category =>
                     <li key={category.name}
-                        className={this.state.activeCategory === category.name ? s.activeLink : null}>
+                        className={(this.props.currentCategory && this.props.currentCategory === category.name) ? s.activeLink :
+                            !this.props.currentCategory && this.props.defaultCategory === category.name ? s.activeLink : null} >
                         <NavLink key={category.id}
                                  to={'/category/' + category.name}
-                                 onClick={() => {this.setCurrentCategory(category.name)}}>
+                                 onClick={() => {this.props.setCategory(category.name)}}>
                             {category.name}
                         </NavLink>
                     </li>

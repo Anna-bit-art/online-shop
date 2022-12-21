@@ -11,31 +11,21 @@ import {calculatePrice, findPrice} from "../../redux/funtions";
 class CartPage extends React.Component {
     state = {
         total: 0,
-        taxAmount: 0,
-        currency: ''
+        taxAmount: 0
     }
 
     componentDidMount() {
-        if (this.props.defaultCurrency) {
+        if(this.props.numberOrders > 0 && this.props.currentCurrency) {
             this.setState({
-                currency: this.props.currentCurrency ? this.props.currentCurrency : this.props.defaultCurrency,
-                total: this.props.currentCurrency ? calculatePrice(this.props.orders, this.props.currentCurrency).total
-                    : calculatePrice(this.props.orders, this.props.defaultCurrency).total,
-                taxAmount: this.props.currentCurrency ? calculatePrice(this.props.orders, this.props.currentCurrency).tax
-                    : calculatePrice(this.props.orders, this.props.defaultCurrency).tax
+                total: calculatePrice(this.props.orders, this.props.currentCurrency).total,
+                taxAmount: calculatePrice(this.props.orders, this.props.currentCurrency).tax
             })
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if ( (this.props.currentCurrency && prevProps.currentCurrency) !== this.props.currentCurrency ) {
-            this.setState({
-                currency: this.props.currentCurrency,
-                total: calculatePrice(this.props.orders, this.props.currentCurrency).total,
-                taxAmount: calculatePrice(this.props.orders, this.props.currentCurrency).tax
-            })
-        }
-        if (prevProps.numberOrders !== this.props.numberOrders) {
+        if((this.props.currentCurrency && prevProps.currentCurrency !== this.props.currentCurrency) ||
+            (prevProps.numberOrders !== this.props.numberOrders)) {
             this.setState({
                 total: calculatePrice(this.props.orders, this.props.currentCurrency).total,
                 taxAmount: calculatePrice(this.props.orders, this.props.currentCurrency).tax
@@ -43,12 +33,9 @@ class CartPage extends React.Component {
         }
     }
 
-
     render() {
-
         return (
             <>
-                {this.props.defaultCurrency &&
                 <div className={s.cartPage}>
 
                     <h1>CART</h1>
@@ -63,8 +50,8 @@ class CartPage extends React.Component {
 
                                 <div className={s.price}>
                                     <p>
-                                        {this.state.currency}
-                                        {this.state.currency ? findPrice(order.prices, this.state.currency) : null}
+                                        {this.props.currentCurrency}
+                                        {this.props.currentCurrency && findPrice(order.prices, this.props.currentCurrency)}
                                     </p>
                                 </div>
 
@@ -99,16 +86,15 @@ class CartPage extends React.Component {
                         {this.props.orders.length === 0
                             ? null
                             : <div className={s.sum}>
-                                <h2>{this.state.currency}{this.state.taxAmount}</h2>
+                                <h2>{this.props.currentCurrency}{this.state.taxAmount}</h2>
                                 <h2>{this.props.numberOrders}</h2>
-                                <h2>{this.state.currency}{this.state.total}</h2>
+                                <h2>{this.props.currentCurrency}{this.state.total}</h2>
                             </div>
                         }
                     </div>
 
                     <button>Order</button>
                 </div>
-                }
             </>
         )
     }
@@ -117,7 +103,6 @@ class CartPage extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        defaultCurrency: state.currency.defaultCurrency,
         currentCurrency: state.currency.currentCurrency,
         orders: state.cart.orders,
         numberOrders: state.cart.numberOrders,

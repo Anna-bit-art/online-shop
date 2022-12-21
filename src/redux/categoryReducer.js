@@ -17,7 +17,6 @@ let initialState = {
 const categoryReducer = (state = initialState, action) => {
 
     switch (action.type) {
-
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
         }

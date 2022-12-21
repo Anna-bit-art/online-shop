@@ -3,7 +3,7 @@ import s from "./CurrencyList.module.css";
 
 class CurrencyList extends React.Component {
     changePrice = (symbol) => {
-        this.props.getCurrentCurrency(symbol);
+        this.props.setCurrency(symbol);
         this.props.checkCurrencyList();
     }
 

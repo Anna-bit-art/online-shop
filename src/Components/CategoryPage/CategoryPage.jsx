@@ -16,13 +16,13 @@ class CategoryPage extends React.Component {
         if (!this.props.currentCategory) {
             this.props.getCategoryProducts(this.props.defaultCategory);
         } else {
-            this.props.getCategoryProducts(this.props.currentCategory)
+            this.props.getCategoryProducts(this.props.currentCategory);
         }
     }
 
     componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
         if (prevProps.currentCategory !== this.props.currentCategory) {
-            this.props.getCategoryProducts(this.props.currentCategory)
+            this.props.getCategoryProducts(this.props.currentCategory);
         }
     }
 
@@ -30,7 +30,7 @@ class CategoryPage extends React.Component {
         return (
             <div className={s.categoryPage}>
 
-                <h1>{this.props.currentCategory}</h1>
+                <h1>{!this.props.currentCategory ? this.props.defaultCategory : this.props.currentCategory}</h1>
 
                 {this.props.isFetching
                     ? <Loader/>
@@ -48,9 +48,8 @@ class CategoryPage extends React.Component {
                                         <div>
                                             <h3>{product.name} {product.brand}</h3>
                                             <p>
-                                                {!this.props.currentCurrency ? this.props.defaultCurrency : this.props.currentCurrency}
-                                                {this.props.currentCurrency ? findPrice(product.prices, this.props.currentCurrency)
-                                                    : findPrice(product.prices, this.props.defaultCurrency)}
+                                                {this.props.currentCurrency}
+                                                {product.id && findPrice(product.prices, this.props.currentCurrency)}
                                             </p>
                                         </div>
                                     </NavLink>
@@ -75,7 +74,6 @@ class CategoryPage extends React.Component {
 let mapStateToProps = (state) => {
     return {
         products: state.category.products,
-        defaultCurrency: state.currency.defaultCurrency,
         defaultCategory: state.category.defaultCategory,
         currentCurrency: state.currency.currentCurrency,
         currentCategory: state.category.currentCategory,
