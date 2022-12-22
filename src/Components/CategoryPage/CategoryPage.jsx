@@ -47,7 +47,7 @@ class CategoryPage extends React.Component {
                                             <h3>{product.name} {product.brand}</h3>
                                             <p>
                                                 {this.props.currentCurrency}
-                                                {product.id && findPrice(product.prices, this.props.currentCurrency)}
+                                                {product.id && this.props.currentCurrency && findPrice(product.prices, this.props.currentCurrency)}
                                             </p>
                                         </div>
                                     </NavLink>

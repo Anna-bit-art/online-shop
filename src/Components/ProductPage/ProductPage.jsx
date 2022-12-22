@@ -14,19 +14,22 @@ import {transformText} from "./interweaveStyle";
 
 class ProductPage extends React.Component {
     state = {
-        mainImage: this.props.product.mainImage,
+        mainImage: undefined,
         options: []
     }
 
     componentDidMount() {
         let productId = this.props.router.params.productId;
         this.props.getProduct(productId);
+        if (this.props.product.id) {
+            this.setState({mainImage: this.props.product.gallery.find(el => el !== undefined)})
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.product.id !== this.props.product.id) {
             this.setState({
-                mainImage: this.props.product.mainImage,
+                mainImage: this.props.product.gallery.find(el => el !== undefined),
                 options: []
             })
         }
@@ -82,7 +85,7 @@ class ProductPage extends React.Component {
                                 <h4>PRICE:</h4>
                                 <p>
                                     {this.props.currentCurrency}
-                                    {this.props.product.id && findPrice(product.prices, this.props.currentCurrency) }
+                                    {this.props.product.id && findPrice(product.prices, this.props.currentCurrency)}
                                 </p>
                             </div>
 

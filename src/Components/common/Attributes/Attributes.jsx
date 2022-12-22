@@ -26,9 +26,7 @@ class Attributes extends React.Component {
     }
 
     chooseOption = (i) => {
-        this.setState({
-            isSelected: this.props.attributes.items[i]
-        })
+        this.setState({ isSelected: this.props.attributes.items[i] })
         this.makeOption(this.props.attributes.items[i].id)
     }
 

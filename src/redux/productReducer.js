@@ -35,10 +35,7 @@ const productReducer = (state = initialState, action) => {
                     gallery: action.payload.gallery,
                     attributes: action.payload.attributes.slice().sort((b,c) => c.type.charCodeAt(0) - b.type.charCodeAt(0)),
                     prices: action.payload.prices,
-
-                    options: [],
-                    firstPrice: action.payload.prices.find(el => el.amount !== undefined).amount,
-                    mainImage: action.payload.gallery.find(el => el !== undefined)
+                    options: []
                 }
             }
         }
@@ -62,7 +59,6 @@ export const getProduct = (productID) => async (dispatch) => {
     dispatch(setProduct(payload));
     dispatch(toggleIsFetching(false));
 }
-
 
 export default productReducer;
 

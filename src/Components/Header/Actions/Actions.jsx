@@ -13,7 +13,7 @@ import CurrencyList from "./CurrencyList/CurrencyList";
 class Actions extends React.Component {
 
     componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-        if(!prevProps.currentCurrency) {
+        if (!prevProps.currentCurrency) {
             this.props.setCurrency(this.props.defaultCurrency);
         }
     }
@@ -34,8 +34,7 @@ class Actions extends React.Component {
                         {this.props.isCurrencyOpen &&
                         <CurrencyList currencies={this.props.currencies}
                                       setCurrency={this.props.setCurrency}
-                                      checkCurrencyList={this.props.checkCurrencyList}
-                        />
+                                      checkCurrencyList={this.props.checkCurrencyList}/>
                         }
                     </div>
 
@@ -49,7 +48,8 @@ class Actions extends React.Component {
                 </div>
 
                 {this.props.isCartOpen && (
-                    <CartOverlay orders={this.props.orders} checkCart={this.props.checkCart}
+                    <CartOverlay orders={this.props.orders}
+                                 checkCart={this.props.checkCart}
                                  numberOrders={this.props.numberOrders}
                                  currentCurrency={this.props.currentCurrency}
                                  increaseQuantity={this.props.increaseQuantity}

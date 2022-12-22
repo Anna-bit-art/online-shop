@@ -13,14 +13,14 @@ class CartOverlay extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.numberOrders > 0 && this.props.currentCurrency) {
+        if (this.props.numberOrders > 0 && this.props.currentCurrency) {
             this.setState({total: calculatePrice(this.props.orders, this.props.currentCurrency).total});
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if ((this.props.currentCurrency && prevProps.currentCurrency !== this.props.currentCurrency) ||
-                (prevProps.numberOrders !== this.props.numberOrders)){
+            (prevProps.numberOrders !== this.props.numberOrders)) {
             this.setState({
                 total: calculatePrice(this.props.orders, this.props.currentCurrency).total
             })
